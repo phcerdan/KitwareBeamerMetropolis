@@ -1,7 +1,13 @@
-\documentclass[10pt]{beamer}
+\documentclass[10pt,aspectratio=169]{beamer}
 \graphicspath{{./figures/}{./logos/}}
-\usetheme[progressbar=frametitle]{metropolis}
+\usetheme[progressbar=frametitle, sectionpage=none]{metropolis}
 \usepackage{appendixnumberbeamer}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks, urlcolor=blue, linkcolor={blue!10!black},
+%citecolor={blue!50!black}
+}
 %
 % metropolis theme: https://github.com/matze/mtheme
 %
@@ -65,52 +71,71 @@
 
 \section{Introduction}
 
-\begin{frame}[fragile]{Metropolis}
-\[
-\mathcal{I} = 
-\begin{bmatrix}
-1 & 1 & 3 \\
-5 & 5 & 3 \\
-3 & 1 & 5 \\
-\end{bmatrix}
-\]
-\begin{align*}
-\mathcal{H}_{GLCM}(\theta=0, \delta = 1)  &= 
-\begin{bmatrix}
-1 & 0 & 1 & 0 & 1  \\
-0 & 0 & 0 & 0 & 0  \\
-1 & 0 & 0 & 0 & 0  \\
-0 & 0 & 0 & 0 & 0  \\
-0 & 0 & 1 & 0 & 1 
-\end{bmatrix}\\
-\mathcal{H}_{GLCM\_sym}(\theta=0 \parallel 180, \delta = 1)  &=
-\begin{bmatrix}
-2 & 0 & 2 & 0 & 1  \\
-0 & 0 & 0 & 0 & 0  \\
-2 & 0 & 0 & 0 & 1  \\
-0 & 0 & 0 & 0 & 0  \\
-1 & 0 & 1 & 0 & 1 
-\end{bmatrix}
-\end{align*}
+\begin{frame}[fragile]{Introduction}
+\begin{itemize} \itemsep1em
+\item Bone diseases are present in 50\% adults in the United States (CDC 2012)
+
+\item Imaging provides a fast, scalable and non-invasive to examine bone structure. But the evaluation is often performed qualitatively or semi-quantitative.
+
+\item Our goal is to present open source software tools to quantify musculoskeletal diseases through imaging.
+
+\item These methods are tested on mouse femur wound model images obtained during a hemophilia study.
+\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Sections}
-  Sections group slides of the same topic
+\begin{frame}[fragile]{Materials}
+\begin{itemize} \itemsep1em
+\item Images acquired using microCT, with resolution of $10$\si{\micro} (\si{\micro}CT80, Scanco)
+\item Trabecular bone at the proximal tibia, inferior to the growth plate
+\end{itemize}
+\vspace{0.5cm}
+\begin{columns}[onlytextwidth]
+  \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=4cm]{figures/bone_materials.png}
+  \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=3.7cm]{figures/bone_materials_3D.png}
+\end{columns}
 \end{frame}
 
 \section{Title formats}
 
-\begin{frame}{Metropolis title formats}
-	\begin{itemize}
-		\item Regular
-		\item \textsc{Small caps}
-		\item \textsc{all small caps}
-		\item ALL CAPS
-	\end{itemize}
-	They can either be set at once for every title type or individually.
+\begin{frame}[fragile]{Materials}
+\begin{columns}[onlytextwidth]
+  \column{0.25\textwidth}
+    \centering
+    \includegraphics[width=0.99\textwidth]{figures/bone_materials_femur_highlight.png}\\
+    \vspace{0.5cm}
+    \includegraphics[width=0.99\textwidth]{figures/bone_materials_femur_3D.png}
+  \column{0.75\textwidth}
+    \centering
+    \begin{itemize} \itemsep1em
+        \item Three, 22 week old (skeletally mature), genetically modified, male mice.
+
+        \item F8 gene knockout preventing the generation of protein coagulation factor VIII.
+
+        \item Pathogenic pathway similar to hemophilia, presenting bleeding induced bone and joint damage.
+
+        \item Images of right (control) and left (wounded) limbs
+    \end{itemize}
+\end{columns}
 \end{frame}
 
-
+{
+\setbeamercolor{background canvas}{bg=kitwarewhite}
+\begin{frame}{Image Analysis Workflow}
+\begin{columns}[onlytextwidth]
+    \column{0.75\textwidth}
+        \includegraphics[width=0.99\textwidth]{figures/analysis_workflow.png}
+    \column{0.25\textwidth}
+        \centering
+        \includegraphics[width=2.5cm]{logos/logo_slicer.png}\\
+        \vspace{0.3cm}
+        Data and all the steps for reproducilibty at: \url{http://dx.doi.org/10.6084/m9.figshare.6947891}
+\end{columns}
+\end{frame}
+}
 
 \section{Elements}
 
