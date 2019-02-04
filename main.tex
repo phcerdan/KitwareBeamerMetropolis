@@ -175,7 +175,7 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 
 \begin{frame}{Texture Analysis: Co-occurrence Matrix (GLCM)}
   \begin{columns}[onlytextwidth]
-    \column{0.7\textwidth}
+    \column{0.6\textwidth}
     Eight co-occurrence based-features:
     \begin{itemize} \itemsep0.5em
       \item Energy
@@ -187,14 +187,24 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
       \item Cluster prominence
       \item Haralick’s correlation
     \end{itemize}
-    \column{0.3\textwidth}
-    \includegraphics[width=4cm]{figures/bone_materials.png}
+    \column{0.4\textwidth}
+    \begin{columns}
+    \centering
+    \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_0_crop.png}\\
+    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_2_crop.png}
+    \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_1_crop.png}\\
+    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_3_crop.png}
+    \end{columns}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Texture Analysis: Run-Length Matrix (GLRLM)}
   \begin{columns}[onlytextwidth]
-    \column{0.7\textwidth}
+    \column{0.6\textwidth}
     Ten run-length based-features:
     \begin{itemize}
        \item Short run emphasis (SRE)
@@ -208,23 +218,47 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
        \item Long run low grey level emphasis (LRLGE)
        \item Long run high grey level emphasis (LRHGE)
     \end{itemize}
-    \column{0.3\textwidth}
-    \includegraphics[width=4cm]{figures/bone_materials.png}
+    \column{0.4\textwidth}
+    \begin{columns}
+    \centering
+    \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_0_crop.png}\\
+    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_2_crop.png}
+    \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_1_crop.png}\\
+    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_3_crop.png}
+    \end{columns}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Bone Morphometry}
 
-Bone morphometry features describe the 3D shape of subchondral bone trabecular structure
-
-Five bone morphometry features:
-\begin{itemize} \itemsep0.5em
-  \item Bone volume density (Bv/Tv)
-  \item Bone surface density (Bs/Bv)
-  \item Trabecular thickness (Tb.Th)
-  \item Trabecular separation (Tb.Sp)
-  \item Trabecular number (Tb.N)
-\end{itemize}
+  \begin{columns}[onlytextwidth]
+    \column{0.6\textwidth}
+    Bone morphometry features describe the 3D shape of subchondral bone trabecular structure
+    Five bone morphometry features:
+    \begin{itemize} \itemsep0.5em
+      \item Bone volume density (Bv/Tv)
+      \item Bone surface density (Bs/Bv)
+      \item Trabecular thickness (Tb.Th)
+      \item Trabecular separation (Tb.Sp)
+      \item Trabecular number (Tb.N)
+    \end{itemize}
+    \column{0.4\textwidth}
+    \begin{columns}
+    \centering
+    \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/BM_49_LEFT_0_crop.png}\\
+    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/BM_49_LEFT_2_crop.png}
+    \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/BM_49_LEFT_1_crop.png}\\
+    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/BM_49_LEFT_3_crop.png}
+    \end{columns}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Shape Analysis}
@@ -258,7 +292,7 @@ Five bone morphometry features:
   \begin{columns}[onlytextwidth]
     \column{0.75\textwidth}
     \begin{itemize} \itemsep1.0em
-      \item ITK software goodies, performance, open source… N-dimensions, MAPPING
+      \item High performance implementation in ITK. N-dimensions. Local Texture Maps.
     \end{itemize}
     \column{0.25\textwidth}
     \centering
