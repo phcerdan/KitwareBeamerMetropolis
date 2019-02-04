@@ -3,6 +3,8 @@
 \usetheme[progressbar=frametitle, sectionpage=none]{metropolis}
 \usepackage{appendixnumberbeamer}
 \usepackage{siunitx}
+\usepackage{framed}
+\usepackage{color}
 \usepackage{hyperref}
 \hypersetup{
 colorlinks, urlcolor=blue, linkcolor={blue!10!black},
@@ -25,6 +27,7 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 \definecolor{kitwaregreen}{HTML}{009D49}
 \definecolor{kitwarewhite}{HTML}{FFFFFF}
 \definecolor{kitwareblack}{HTML}{000000}
+\definecolor{shadecolor}{HTML}{EEEEEE}
 
 \setbeamercolor{progress bar}{fg=kitwaregreen}
 % Theme colors are derived from these two elements
@@ -45,8 +48,8 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 %\setbeamertemplate{frame footer}{\includegraphics[width=.1\textwidth]{klogo_new_crop}}
 
 
-\title{Methods for quantitative characterization of bone injury from computer-tomography images}
-%\subtitle{Methods for quantitative characterization of bone injury from computer-tomography images}
+\title{Methods for quantitative characterization of bone injury from computed-tomography images}
+%\subtitle{Methods for quantitative characterization of bone injury from computed-tomography images}
 \date{\today}
 \author{Pablo Hernandez-Cerdan\textsuperscript{a}, Beatriz Paniagua\textsuperscript{a}, Jack Protero\textsuperscript{b}, J.S Marron\textsuperscript{b}, Eric Libingston\textsuperscript{c}, Ted Bateman\textsuperscript{c} and Matthew McCormick\textsuperscript{a}}
 \institute{\textsuperscript{a} Kitware, Inc.\newline\textsuperscript{b} Dept. of Statistics and Operations Research, UNC\newline\textsuperscript{c} Dept. of Biomedical Engineering, UNC}
@@ -64,10 +67,10 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 
 \maketitle
 
-\begin{frame}{Table of contents}
-  \setbeamertemplate{section in toc}[sections numbered]
-  \tableofcontents[hideallsubsections]
-\end{frame}
+% \begin{frame}{Table of contents}
+%   \setbeamertemplate{section in toc}[sections numbered]
+%   \tableofcontents[hideallsubsections]
+% \end{frame}
 
 \section{Introduction}
 
@@ -83,23 +86,7 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Materials}
-\begin{itemize} \itemsep1em
-\item Images acquired using microCT, with resolution of $10$\si{\micro} (\si{\micro}CT80, Scanco)
-\item Trabecular bone at the proximal tibia, inferior to the growth plate
-\end{itemize}
-\vspace{0.5cm}
-\begin{columns}[onlytextwidth]
-  \column{0.5\textwidth}
-    \centering
-    \includegraphics[width=4cm]{figures/bone_materials.png}
-  \column{0.5\textwidth}
-    \centering
-    \includegraphics[width=3.7cm]{figures/bone_materials_3D.png}
-\end{columns}
-\end{frame}
-
-\section{Title formats}
+\section{Materials}
 
 \begin{frame}[fragile]{Materials}
 \begin{columns}[onlytextwidth]
@@ -122,12 +109,29 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 \end{columns}
 \end{frame}
 
+\begin{frame}[fragile]{Materials}
+\begin{itemize} \itemsep1em
+\item Images acquired using microCT, with resolution of $10$\si{\micro} (\si{\micro}CT80, Scanco)
+\item Trabecular bone at the proximal tibia, inferior to the growth plate
+\end{itemize}
+\vspace{0.5cm}
+\begin{columns}[onlytextwidth]
+  \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=4cm]{figures/bone_materials.png}
+  \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=3.7cm]{figures/bone_materials_3D.png}
+\end{columns}
+\end{frame}
+
 {
 \setbeamercolor{background canvas}{bg=kitwarewhite}
 \begin{frame}{Image Analysis Workflow}
 \begin{columns}[onlytextwidth]
     \column{0.75\textwidth}
-        \includegraphics[width=0.99\textwidth]{figures/analysis_workflow.png}
+      \includegraphics[width=0.99\textwidth]{figures/Automated_Processing_Pipeline.png}
+        %\includegraphics[width=0.99\textwidth]{figures/analysis_workflow.png}
     \column{0.25\textwidth}
         \centering
         \includegraphics[width=2.5cm]{logos/logo_slicer.png}\\
@@ -137,52 +141,233 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 \end{frame}
 }
 
-\section{Elements}
+\section{Methods}
 
-\begin{frame}[fragile]{Typography}
-      \begin{verbatim}The theme provides sensible defaults to
-\emph{emphasize} text, \alert{accent} parts
-or show \textbf{bold} results.\end{verbatim}
+\begin{frame}[fragile]{Quantitative Methods}
+  \begin{itemize} \itemsep2em
+    \item Texture Analysis: GLCM and GLRLM
 
-  \begin{center}becomes\end{center}
+    \item Bone Morphometry
 
-  The theme provides sensible defaults to \emph{emphasize} text,
-  \alert{accent} parts or show \textbf{bold} results.
+    \item Shape Analysis: Iterative Closest Points (ICP)
+  \end{itemize}
 \end{frame}
 
-
-\begin{frame}{References}
-  Some references to showcase [allowframebreaks] 
+\begin{frame}[fragile]{Texture Analysis}
+  We investigated two different types of textural features related to different aspects of the bone architecture:
+  \vspace{0.1cm}
+  % \metroset{block=fill}
+  \begin{exampleblock}{Co-occurrence based-features:}
+    \begin{itemize} \itemsep0.8em
+      \item Haralick et al. 1973 \cite{Haralick1973}
+      \item Local neighborhoods and connectivities
+      \item Grey Level Co-occurrence Matrix (GLCM)
+    \end{itemize}
+  \end{exampleblock}
+  \begin{exampleblock}{Run-length based-features:}
+    \begin{itemize} \itemsep0.8em
+      \item Galloway et al. 1975 \cite{Galloway1975}
+      \item Grey-level clusters
+      \item Grey Level Run-Length Matrix (GLRLM)
+    \end{itemize}
+  \end{exampleblock}
 \end{frame}
+
+\begin{frame}{Texture Analysis: Co-occurrence Matrix (GLCM)}
+  \begin{columns}[onlytextwidth]
+    \column{0.7\textwidth}
+    Eight co-occurrence based-features:
+    \begin{itemize} \itemsep0.5em
+      \item Energy
+      \item Entropy
+      \item Correlation
+      \item Inverse Difference Moment (IDM)
+      \item Contrast
+      \item Cluster shade
+      \item Cluster prominence
+      \item Haralick’s correlation
+    \end{itemize}
+    \column{0.3\textwidth}
+    \includegraphics[width=4cm]{figures/bone_materials.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Texture Analysis: Run-Length Matrix (GLRLM)}
+  \begin{columns}[onlytextwidth]
+    \column{0.7\textwidth}
+    Ten run-length based-features:
+    \begin{itemize}
+       \item Short run emphasis (SRE)
+       \item Long run emphasis (LRE)
+       \item Grey level non-uniformity (GLN)
+       \item Run length non-uniformity (RLN)
+       \item Low grey level run emphasis (LGRE)
+       \item High grey level run emphasis (HGRE)
+       \item Short run low grey level emphasis (SRLGE)
+       \item Short run high grey level emphasis (SRHGE)
+       \item Long run low grey level emphasis (LRLGE)
+       \item Long run high grey level emphasis (LRHGE)
+    \end{itemize}
+    \column{0.3\textwidth}
+    \includegraphics[width=4cm]{figures/bone_materials.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Bone Morphometry}
+
+Bone morphometry features describe the 3D shape of subchondral bone trabecular structure
+
+Five bone morphometry features:
+\begin{itemize} \itemsep0.5em
+  \item Bone volume density (Bv/Tv)
+  \item Bone surface density (Bs/Bv)
+  \item Trabecular thickness (Tb.Th)
+  \item Trabecular separation (Tb.Sp)
+  \item Trabecular number (Tb.N)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Shape Analysis}
+  \begin{center}
+  \includegraphics[width=0.9\textwidth]{./figures/analysis_shape.png}\\
+  \end{center}
+  \vspace{0.1cm}
+  \centering
+  Shape analysis results for all subjects, including superimposed 3D models (left) and visualization of pathological shape changes via signed distances (right).
+\end{frame}
+
+{
+\setbeamercolor{background canvas}{bg=kitwarewhite}
+\section{Results}
+\begin{frame}{Results}
+  \centering
+  \includegraphics[width=0.7\textwidth]{./figures/features_pcaBoneVSpcaTexture1000Bins.png}\\
+  \vspace{0.1cm}
+  First principal component of the bone morphometry analysis versus first principal component of the texture analysis.
+\end{frame}
+}
 
 \section{Conclusion}
 
-\begin{frame}{Summary}
+\begin{frame}{Conclusions}
+  \begin{itemize} \itemsep1.0em
 
-  Get the source of this theme and the demo presentation from
+    \item Computed biomarkers based on not only traditional bone morphometrics, but also texture and shape-based metrics.
+  \end{itemize}
 
-  \begin{center}\url{github.com/matze/mtheme}\end{center}
+  \begin{columns}[onlytextwidth]
+    \column{0.75\textwidth}
+    \begin{itemize} \itemsep1.0em
+      \item ITK software goodies, performance, open source… N-dimensions, MAPPING
+    \end{itemize}
+    \column{0.25\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{./logos/logo_ITK.png}
+  \end{columns}
 
-  The theme \emph{itself} is licensed under a
-  \href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
-  Attribution-ShareAlike 4.0 International License}.
-
+  \begin{itemize} \itemsep1.0em
+    \item Workflow can be adapted to target other modalities and pathologies.
+    \item We were able to classify injured and healthy femurs with simple statistical methods.
+  \end{itemize}
 \end{frame}
 
+\begin{frame}{Open Source Development}
+  \begin{columns}[onlytextwidth]
+    \column{0.80\textwidth}
+    \metroset{block=fill}
+    \begin{block}{All analysis filters were implemented as part of \textbf{ITK}, the Insight Toolkit:}
+    \begin{itemize} \itemsep1.0em
+      \item High performance, greatly reducing computational time in texture analysis.
+      \item Able to compute 3D maps of multidimensional features
+    \end{itemize}
+  \end{block}
+    \column{0.20\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{./logos/logo_ITK.png}
+  \end{columns}
+  \vspace{0.2cm}
+  \begin{columns}[onlytextwidth]
+    \column{0.80\textwidth}
+    \metroset{block=fill}
+    \begin{block}{\textbf{Python} packages available for Windows, Mac and Linux}
+    % \noindent \textbf{Python} packages available for Windows, Mac and Linux
+      \centering
+      pip install itk-texturefeatures itk-bonemorphometry
+  \end{block}
+    \column{0.20\textwidth}
+    \centering
+    \includegraphics[width=0.99\textwidth]{./logos/logo_python.png}
+  \end{columns}
+  \vspace{0.2cm}
+  \begin{columns}[onlytextwidth]
+    \column{0.80\textwidth}
+    \metroset{block=fill}
+    \begin{block}{Graphical interface in 3DSlicer: Bone Texture Extension}
+    \end{block}
+    \column{0.20\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./logos/logo_slicer_horizontal.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \begin{columns}[onlytextwidth]
+  \column{0.5\textwidth}
+    \includegraphics[width=0.9\textwidth]{./logos/klogo.png}\\
+    \vspace{0.1cm}
+    % \metroset{block=fill}
+    \begin{block}{\color{kitwareblue} Collaborative Software R\&D}
+      \begin{itemize}%\itemsep0.2em
+        \item Algorithms \& applications
+        \item Software process \& infrastructure
+        \item Support \& training
+        \item Open source leadership
+      \end{itemize}
+    \end{block}
+    \begin{block}{\color{kitwareblue} Supporting industry, goverment and academia}
+    \end{block}
+  \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./logos/kitware_pie.png}
+    \includegraphics[width=0.9\textwidth]{./logos/kitware_itk_slicer_vtk_logos.png}
+  \end{columns}
+\end{frame}
+
+{
+\setbeamercolor{background canvas}{bg=kitwarewhite}
+\begin{frame}{Medical Computing}
+    \centering
+    \includegraphics[height=0.9\textheight]{./logos/kitware_medical.png}
+\end{frame}
+}
+
 \begin{frame}[standout]
-  Questions?
+  \centering
+  {\huge Thanks!}\\
+  pablo.hernandez@kitware.com\\
+  \vspace{2cm}
+  % {\Huge Questions?}\\
 \end{frame}
 
 \appendix
 
-\begin{frame}[fragile]{Backup slides}
-  Sometimes, it is useful to add slides at the end of your presentation to
-  refer to during audience questions.
-
-  The best way to do this is to include the \verb|appendixnumberbeamer|
-  package in your preamble and call \verb|\appendix| before your backup slides.
-
+{
+\setbeamercolor{background canvas}{bg=kitwarewhite}
+\begin{frame}[fragile]{Performance Comparison: ITK vs Matlab (2D)}
+  \centering
+  \includegraphics[height=0.9\textheight]{./figures/TextureFeaturesPerformanceComparison.png}
 \end{frame}
+
+\begin{frame}[fragile]{GLCM Matrices}
+  \centering
+  \includegraphics[width=0.9\textwidth]{./figures/GLCM_matrices.png}
+\end{frame}
+
+\begin{frame}[fragile]{GLRLM Matrices}
+  \centering
+  \includegraphics[width=0.9\textwidth]{./figures/GLRLM_matrices.png}
+\end{frame}
+}
 
 \begin{frame}[allowframebreaks]{References}
 
@@ -190,6 +375,7 @@ or show \textbf{bold} results.\end{verbatim}
   \bibliographystyle{abbrv}
 
 \end{frame}
+
 
 \end{document}
 
