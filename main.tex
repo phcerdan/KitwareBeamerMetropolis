@@ -1,4 +1,35 @@
 \documentclass[10pt,aspectratio=169]{beamer}
+\usepackage{pgfpages}
+
+% ---------------- Support for notes ------------------------------
+% Add an empty note to every slide
+% https://tex.stackexchange.com/questions/11708/run-macro-on-each-frame-in-beamer
+% \setbeameroption{hide notes} % Only slides (default)
+% \setbeameroption{show only notes} % Only notes
+% \setbeameroption{show notes on second screen=right} % Both
+\makeatletter
+\def\beamer@framenotesbegin{% at beginning of slide
+  \gdef\beamer@noteitems{}%
+  \gdef\beamer@notes{{}}% used to be totally empty.
+}
+\makeatother
+% Now, use a pdf reader able to read this:
+% -----------------------------------------------------------------
+% iOS: Skim: https://gist.github.com/andrejbauer/ac361549ac2186be0cdb
+% 1. Generate just the presentation (hide notes) and save to slides.pdf
+% 2. Generate onlt the notes (show only nodes) and save to notes.pdf
+% 3. With Skim open both slides.pdf and notes.pdf
+% 4. Click on slides.pdf to bring it to front.
+% 5. In Skim, under "View -> Presentation Option -> Synhcronized Noted Document"
+%    select notes.pdf.
+% 6. Now as you move around in slides.pdf the notes.pdf file will follow you.
+% 7. Arrange windows so that notes.pdf is in full screen mode on your laptop
+%    and slides.pdf is in presentation mode on the projector.
+% -----------------------------------------------------------------
+% Linux: pdfpc: https://tex.stackexchange.com/questions/84622/is-there-a-specialized-pdf-viewer-for-latex-beamer-presentations-on-linux
+% example: pdfpc main.pdf --notes=right
+% ---------------- End support for notes --------------------------
+
 \graphicspath{{./figures/}{./logos/}}
 \usetheme[progressbar=frametitle, sectionpage=none]{metropolis}
 \usepackage{appendixnumberbeamer}
@@ -74,6 +105,31 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 % \end{frame}
 
 \section{Introduction}
+
+\begin{frame}
+  \begin{columns}[onlytextwidth]
+  \column{0.5\textwidth}
+    \includegraphics[width=0.9\textwidth]{./logos/klogo.png}\\
+    \vspace{0.1cm}
+    % \metroset{block=fill}
+    \begin{block}{\color{kitwareblue} Collaborative Software R\&D}
+      \begin{itemize}%\itemsep0.2em
+        \item Algorithms \& applications
+        \item Software process \& infrastructure
+        \item Support \& training
+        \item Open source leadership
+      \end{itemize}
+    \end{block}
+    \begin{block}{\color{kitwareblue} Supporting industry, government and academia}
+    \end{block}
+  \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./logos/kitware_pie.png}\\
+    \includegraphics[width=0.9\textwidth]{./logos/kitware_itk_slicer_vtk_logos.png}
+  \end{columns}
+
+  \note[item]{Intro Kitware:}
+\end{frame}
 
 \begin{frame}[fragile]{Introduction}
 \begin{itemize} \itemsep1em
@@ -304,6 +360,13 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
   \end{itemize}
 \end{frame}
 
+{
+\setbeamercolor{background canvas}{bg=kitwarewhite}
+\begin{frame}[fragile]{Performance Comparison: ITK vs Matlab (2D)}
+  \centering
+  \includegraphics[height=0.9\textheight]{./figures/TextureFeaturesPerformanceComparison.png}
+\end{frame}
+
 \begin{frame}{Open Source Development}
   \begin{columns}[onlytextwidth]
     \column{0.80\textwidth}
@@ -343,29 +406,6 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
   \end{columns}
 \end{frame}
 
-\begin{frame}
-  \begin{columns}[onlytextwidth]
-  \column{0.5\textwidth}
-    \includegraphics[width=0.9\textwidth]{./logos/klogo.png}\\
-    \vspace{0.1cm}
-    % \metroset{block=fill}
-    \begin{block}{\color{kitwareblue} Collaborative Software R\&D}
-      \begin{itemize}%\itemsep0.2em
-        \item Algorithms \& applications
-        \item Software process \& infrastructure
-        \item Support \& training
-        \item Open source leadership
-      \end{itemize}
-    \end{block}
-    \begin{block}{\color{kitwareblue} Supporting industry, government and academia}
-    \end{block}
-  \column{0.5\textwidth}
-    \centering
-    \includegraphics[width=0.9\textwidth]{./logos/kitware_pie.png}\\
-    \includegraphics[width=0.9\textwidth]{./logos/kitware_itk_slicer_vtk_logos.png}
-  \end{columns}
-\end{frame}
-
 {
 \setbeamercolor{background canvas}{bg=kitwarewhite}
 \begin{frame}{Medical Computing}
@@ -387,11 +427,6 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 
 {
 \setbeamercolor{background canvas}{bg=kitwarewhite}
-\begin{frame}[fragile]{Performance Comparison: ITK vs Matlab (2D)}
-  \centering
-  \includegraphics[height=0.9\textheight]{./figures/TextureFeaturesPerformanceComparison.png}
-\end{frame}
-
 \begin{frame}[fragile]{GLCM Matrices}
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/GLCM_matrices.png}
@@ -402,6 +437,7 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
   \includegraphics[width=0.9\textwidth]{./figures/GLRLM_matrices.png}
 \end{frame}
 }
+
 
 \begin{frame}[allowframebreaks]{References}
 
