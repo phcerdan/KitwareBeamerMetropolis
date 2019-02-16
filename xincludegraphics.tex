@@ -1,0 +1,94 @@
+% Add functionality to includegraphics for adding labels.
+% From: https://tex.stackexchange.com/questions/454660/adding-a-label-on-top-of-figure
+% Options:
+% pos = nw | n | ne | e | se | s | sw | w
+% labelbox = true | false
+% fontsize = <fontsize command>
+% Examples:
+% \xincludegraphics[scale=0.3,label=a)]{example-image-a}
+% \xincludegraphics[scale=0.3,label=b)]{example-image-b}
+% \xincludegraphics[scale=0.2,angle=90,label=c),pos=sw,labelbox,fontsize=\Large]{example-image-c}
+% \xincludegraphics[scale=0.2,angle=90,label=c),pos=w,labelbox,fontsize=\tiny]{example-image-c}
+% \setlabel{pos=ne,fontsize=\scriptsize,labelbox}
+% \xincludegraphics[scale=0.2,angle=90,label=x)]{example-image-c}
+% \xincludegraphics[scale=0.2,angle=90,label=y),labelbox=false]{example-image-c}
+%
+% Include using \input{xincludegraphics.tex} before \begin{document}
+% \xincludegraphics[width=0.9\textwidth, label=a),labelbox,fontsize=\small]{.image.png}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{xparse,xcoffins}
+
+\ExplSyntaxOn
+\NewCoffin\imagecoffin
+\NewCoffin\labelcoffin
+
+\keys_define:nn { miguel/label }
+ {
+  label   .tl_set:N = \l_miguel_label_tl,
+  labelbox .bool_set:N = \l_miguel_label_box_bool,
+  labelbox .default:n = true,
+  fontsize .tl_set:N = \l_miguel_label_size_tl,
+  fontsize .initial:n = \footnotesize,
+  pos .choice:,
+  pos/nw .code:n = \tl_set:Nn \l_miguel_label_pos_tl { left,up },
+  pos/ne .code:n = \tl_set:Nn \l_miguel_label_pos_tl { right,up },
+  pos/sw .code:n = \tl_set:Nn \l_miguel_label_pos_tl { left,down },
+  pos/se .code:n = \tl_set:Nn \l_miguel_label_pos_tl { right,down },
+  pos/n .code:n = \tl_set:Nn \l_miguel_label_pos_tl { hc,up },
+  pos/w .code:n = \tl_set:Nn \l_miguel_label_pos_tl { left,vc },
+  pos/s .code:n = \tl_set:Nn \l_miguel_label_pos_tl { hc,down },
+  pos/e .code:n = \tl_set:Nn \l_miguel_label_pos_tl { right,vc },
+  pos .initial:n = nw,
+  unknown .code:n   = \clist_put_right:Nx \l_miguel_label_clist
+                       { \l_keys_key_tl = \exp_not:n { #1 } }
+ }
+\clist_new:N \l_miguel_label_clist
+\box_new:N \l_miguel_label_box
+\box_new:N \l_miguel_label_image_box
+
+\NewDocumentCommand{\xincludegraphics}{O{}m}
+ {
+  \group_begin:
+  \tl_clear:N \l_miguel_label_tl
+  \clist_clear:N \l_miguel_label_clist
+  \keys_set:nn { miguel/label } { #1 }
+  \tl_if_empty:NTF \l_miguel_label_tl
+   {
+    \miguel_includegraphics:Vn \l_miguel_label_clist { #2 }
+   }
+   {
+    \SetHorizontalCoffin\imagecoffin
+     {
+      \miguel_includegraphics:Vn \l_miguel_label_clist { #2 }
+     }
+    \SetHorizontalCoffin\labelcoffin
+     {
+      \raisebox{\depth}
+       {
+        \bool_if:NTF \l_miguel_label_box_bool
+         { \fcolorbox{white}{white}{\l_miguel_label_size_tl\l_miguel_label_tl} }
+         { \l_miguel_label_size_tl\l_miguel_label_tl }
+       }
+     }
+    \SetVerticalPole\imagecoffin{left}{3pt+\CoffinWidth\labelcoffin/2}
+    \SetVerticalPole\imagecoffin{right}{\Width-3pt-\CoffinWidth\labelcoffin/2}
+    \SetHorizontalPole\imagecoffin{up}{\Height-3pt-\CoffinHeight\labelcoffin/2}
+    \SetHorizontalPole\imagecoffin{down}{3pt+\CoffinHeight\labelcoffin/2}
+    \use:x{\JoinCoffins\imagecoffin[\l_miguel_label_pos_tl]\labelcoffin[vc,hc]} 
+    \TypesetCoffin\imagecoffin
+   }
+   \group_end:
+ }
+\NewDocumentCommand{\setlabel}{m}
+ {
+  \keys_set:nn { miguel/label } { #1 }
+ }
+
+\cs_new_protected:Nn \miguel_includegraphics:nn
+ {
+  \includegraphics[#1]{#2}
+ }
+\cs_generate_variant:Nn \miguel_includegraphics:nn { V }
+
+\ExplSyntaxOff

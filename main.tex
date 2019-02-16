@@ -6,6 +6,7 @@
 \usepackage{framed}
 \usepackage{color}
 \usepackage{hyperref}
+\input{xincludegraphics.tex}
 \hypersetup{
 colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 %citecolor={blue!50!black}
@@ -192,12 +193,10 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
     \centering
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_0_crop.png}\\
-    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_2_crop.png}
+    A B
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_1_crop.png}\\
-    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_3_crop.png}
+    C D
     \end{columns}
   \end{columns}
 \end{frame}
@@ -207,10 +206,10 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
     \column{0.6\textwidth}
     Ten run-length based-features:
     \begin{itemize}
-       \item Short run emphasis (SRE)
-       \item Long run emphasis (LRE)
-       \item Grey level non-uniformity (GLN)
-       \item Run length non-uniformity (RLN)
+       \item \textbf{a}) Short run emphasis (SRE) 
+       \item \textbf{b}) Long run emphasis (LRE) 
+       \item \textbf{c}) Grey level non-uniformity (GLN) 
+       \item \textbf{d}) Run length non-uniformity (RLN) 
        \item Low grey level run emphasis (LGRE)
        \item High grey level run emphasis (HGRE)
        \item Short run low grey level emphasis (SRLGE)
@@ -223,12 +222,12 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
     \centering
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_0_crop.png}\\
-    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_2_crop.png}
+    \xincludegraphics[width=0.9\textwidth, label=a, labelbox]{./TextureMapsImages/GLRLM_49_LEFT_0_crop.png}\\
+    \xincludegraphics[width=0.9\textwidth, label=c, labelbox]{./TextureMapsImages/GLRLM_49_LEFT_2_crop.png}
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_1_crop.png}\\
-    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/GLRLM_49_LEFT_3_crop.png}
+    \xincludegraphics[width=0.9\textwidth, label=b, labelbox]{./TextureMapsImages/GLRLM_49_LEFT_1_crop.png}\\
+    \xincludegraphics[width=0.9\textwidth, label=d, labelbox]{./TextureMapsImages/GLRLM_49_LEFT_3_crop.png}
     \end{columns}
   \end{columns}
 \end{frame}
@@ -240,10 +239,10 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
     Bone morphometry features describe the 3D shape of subchondral bone trabecular structure
     Five bone morphometry features:
     \begin{itemize} \itemsep0.5em
-      \item Bone volume density (Bv/Tv)
-      \item Bone surface density (Bs/Bv)
-      \item Trabecular thickness (Tb.Th)
-      \item Trabecular separation (Tb.Sp)
+      \item \textbf{a}) Bone volume density (Bv/Tv)
+      \item \textbf{b}) Bone surface density (Bs/Bv)
+      \item \textbf{c}) Trabecular thickness (Tb.Th)
+      \item \textbf{d}) Trabecular separation (Tb.Sp)
       \item Trabecular number (Tb.N)
     \end{itemize}
     \column{0.4\textwidth}
@@ -251,12 +250,12 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
     \centering
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/BM_49_LEFT_0_crop.png}\\
-    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/BM_49_LEFT_2_crop.png}
+    \xincludegraphics[width=0.9\textwidth, label=a, labelbox]{./TextureMapsImages/BM_49_LEFT_0_crop.png}\\
+    \xincludegraphics[width=0.9\textwidth, label=c, labelbox]{./TextureMapsImages/BM_49_LEFT_2_crop.png}
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/BM_49_LEFT_1_crop.png}\\
-    \includegraphics[width=0.9\textwidth]{./TextureMapsImages/BM_49_LEFT_3_crop.png}
+    \xincludegraphics[width=0.9\textwidth, label=b, labelbox]{./TextureMapsImages/BM_49_LEFT_1_crop.png}\\
+    \xincludegraphics[width=0.9\textwidth, label=d, labelbox]{./TextureMapsImages/BM_49_LEFT_3_crop.png}
     \end{columns}
   \end{columns}
 \end{frame}
@@ -362,7 +361,7 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
     \end{block}
   \column{0.5\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth]{./logos/kitware_pie.png}
+    \includegraphics[width=0.9\textwidth]{./logos/kitware_pie.png}\\
     \includegraphics[width=0.9\textwidth]{./logos/kitware_itk_slicer_vtk_logos.png}
   \end{columns}
 \end{frame}
