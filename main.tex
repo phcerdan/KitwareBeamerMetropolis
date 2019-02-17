@@ -133,13 +133,11 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 
 \begin{frame}[fragile]{Introduction}
 \begin{itemize} \itemsep1em
-\item Bone diseases are present in 50\% adults in the United States (CDC 2012)
+\item Just a list
 
-\item Imaging provides a fast, scalable and non-invasive to examine bone structure. But the evaluation is often performed qualitatively or semi-quantitative.
+\item B
 
-\item Our goal is to present open source software tools to quantify musculoskeletal diseases through imaging.
-
-\item These methods are tested on mouse femur wound model images obtained during a hemophilia study.
+\item C
 \end{itemize}
 \end{frame}
 
@@ -155,109 +153,14 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
   \column{0.75\textwidth}
     \centering
     \begin{itemize} \itemsep1em
-        \item Three, 22 week old (skeletally mature), genetically modified, male mice.
+        \item Two Columns.
 
-        \item F8 gene knockout preventing the generation of protein coagulation factor VIII.
-
-        \item Pathogenic pathway similar to hemophilia, presenting bleeding induced bone and joint damage.
-
-        \item Images of right (control) and left (wounded) limbs
+        \item Internally uses minipage.
     \end{itemize}
 \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Materials}
-\begin{itemize} \itemsep1em
-\item Images acquired using microCT, with resolution of $10$\si{\micro} (\si{\micro}CT80, Scanco)
-\item Trabecular bone at the proximal tibia, inferior to the growth plate
-\end{itemize}
-\vspace{0.5cm}
-\begin{columns}[onlytextwidth]
-  \column{0.5\textwidth}
-    \centering
-    \includegraphics[width=4cm]{figures/bone_materials.png}
-  \column{0.5\textwidth}
-    \centering
-    \includegraphics[width=3.7cm]{figures/bone_materials_3D.png}
-\end{columns}
-\end{frame}
-
-{
-\setbeamercolor{background canvas}{bg=kitwarewhite}
-\begin{frame}{Image Analysis Workflow}
-\begin{columns}[onlytextwidth]
-    \column{0.75\textwidth}
-      \includegraphics[width=0.99\textwidth]{figures/Automated_Processing_Pipeline.png}
-        %\includegraphics[width=0.99\textwidth]{figures/analysis_workflow.png}
-    \column{0.25\textwidth}
-        \centering
-        \includegraphics[width=2.5cm]{logos/logo_slicer.png}\\
-        \vspace{0.3cm}
-        Data and all the steps for reproducibility at: \url{http://dx.doi.org/10.6084/m9.figshare.6947891}
-\end{columns}
-\end{frame}
-}
-
-\section{Methods}
-
-\begin{frame}[fragile]{Quantitative Methods}
-  \begin{itemize} \itemsep2em
-    \item Texture Analysis: GLCM and GLRLM
-
-    \item Bone Morphometry
-
-    \item Shape Analysis: Iterative Closest Points (ICP)
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Texture Analysis}
-  We investigated two different types of textural features related to different aspects of the bone architecture:
-  \vspace{0.1cm}
-  % \metroset{block=fill}
-  \begin{exampleblock}{Co-occurrence based-features:}
-    \begin{itemize} \itemsep0.8em
-      \item Haralick et al. 1973 \cite{Haralick1973}
-      \item Local neighborhoods and connectivities
-      \item Grey Level Co-occurrence Matrix (GLCM)
-    \end{itemize}
-  \end{exampleblock}
-  \begin{exampleblock}{Run-length based-features:}
-    \begin{itemize} \itemsep0.8em
-      \item Galloway et al. 1975 \cite{Galloway1975}
-      \item Grey-level clusters
-      \item Grey Level Run-Length Matrix (GLRLM)
-    \end{itemize}
-  \end{exampleblock}
-\end{frame}
-
-\begin{frame}{Texture Analysis: Co-occurrence Matrix (GLCM)}
-  \begin{columns}[onlytextwidth]
-    \column{0.6\textwidth}
-    Eight co-occurrence based-features:
-    \begin{itemize} \itemsep0.5em
-      \item Energy
-      \item Entropy
-      \item Correlation
-      \item Inverse Difference Moment (IDM)
-      \item Contrast
-      \item Cluster shade
-      \item Cluster prominence
-      \item Haralick’s correlation
-    \end{itemize}
-    \column{0.4\textwidth}
-    \begin{columns}
-    \centering
-    \column{0.5\textwidth}
-    \centering
-    A B
-    \column{0.5\textwidth}
-    \centering
-    C D
-    \end{columns}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Texture Analysis: Run-Length Matrix (GLRLM)}
+\begin{frame}{Label images with xincludegraphics}
   \begin{columns}[onlytextwidth]
     \column{0.6\textwidth}
     Ten run-length based-features:
@@ -266,12 +169,6 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
        \item \textbf{b}) Long run emphasis (LRE) 
        \item \textbf{c}) Grey level non-uniformity (GLN) 
        \item \textbf{d}) Run length non-uniformity (RLN) 
-       \item Low grey level run emphasis (LGRE)
-       \item High grey level run emphasis (HGRE)
-       \item Short run low grey level emphasis (SRLGE)
-       \item Short run high grey level emphasis (SRHGE)
-       \item Long run low grey level emphasis (LRLGE)
-       \item Long run high grey level emphasis (LRHGE)
     \end{itemize}
     \column{0.4\textwidth}
     \begin{columns}
@@ -288,43 +185,6 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
   \end{columns}
 \end{frame}
 
-\begin{frame}{Bone Morphometry}
-
-  \begin{columns}[onlytextwidth]
-    \column{0.6\textwidth}
-    Bone morphometry features describe the 3D shape of subchondral bone trabecular structure
-    Five bone morphometry features:
-    \begin{itemize} \itemsep0.5em
-      \item \textbf{a}) Bone volume density (Bv/Tv)
-      \item \textbf{b}) Bone surface density (Bs/Bv)
-      \item \textbf{c}) Trabecular thickness (Tb.Th)
-      \item \textbf{d}) Trabecular separation (Tb.Sp)
-      \item Trabecular number (Tb.N)
-    \end{itemize}
-    \column{0.4\textwidth}
-    \begin{columns}
-    \centering
-    \column{0.5\textwidth}
-    \centering
-    \xincludegraphics[width=0.9\textwidth, label=a, labelbox]{./TextureMapsImages/BM_49_LEFT_0_crop.png}\\
-    \xincludegraphics[width=0.9\textwidth, label=c, labelbox]{./TextureMapsImages/BM_49_LEFT_2_crop.png}
-    \column{0.5\textwidth}
-    \centering
-    \xincludegraphics[width=0.9\textwidth, label=b, labelbox]{./TextureMapsImages/BM_49_LEFT_1_crop.png}\\
-    \xincludegraphics[width=0.9\textwidth, label=d, labelbox]{./TextureMapsImages/BM_49_LEFT_3_crop.png}
-    \end{columns}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Shape Analysis}
-  \begin{center}
-  \includegraphics[width=0.9\textwidth]{./figures/analysis_shape.png}\\
-  \end{center}
-  \vspace{0.1cm}
-  \centering
-  Shape analysis results for all subjects, including superimposed 3D models (left) and visualization of pathological shape changes via signed distances (right).
-\end{frame}
-
 {
 \setbeamercolor{background canvas}{bg=kitwarewhite}
 \section{Results}
@@ -338,35 +198,8 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 
 \section{Conclusion}
 
-\begin{frame}{Conclusions}
-  \begin{itemize} \itemsep1.0em
-
-    \item Computed biomarkers based on not only traditional bone morphometrics, but also texture and shape-based metrics.
-  \end{itemize}
-
-  \begin{columns}[onlytextwidth]
-    \column{0.75\textwidth}
-    \begin{itemize} \itemsep1.0em
-      \item High performance implementation in ITK. N-dimensions. Local Texture Maps.
-    \end{itemize}
-    \column{0.25\textwidth}
-    \centering
-    \includegraphics[width=0.8\textwidth]{./logos/logo_ITK.png}
-  \end{columns}
-
-  \begin{itemize} \itemsep1.0em
-    \item Workflow can be adapted to target other modalities and pathologies.
-    \item We were able to classify injured and healthy femurs with simple statistical methods.
-  \end{itemize}
-\end{frame}
-
 {
 \setbeamercolor{background canvas}{bg=kitwarewhite}
-\begin{frame}[fragile]{Performance Comparison: ITK vs Matlab (2D)}
-  \centering
-  \includegraphics[height=0.9\textheight]{./figures/TextureFeaturesPerformanceComparison.png}
-\end{frame}
-
 \begin{frame}{Open Source Development}
   \begin{columns}[onlytextwidth]
     \column{0.80\textwidth}
@@ -427,12 +260,7 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 
 {
 \setbeamercolor{background canvas}{bg=kitwarewhite}
-\begin{frame}[fragile]{GLCM Matrices}
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/GLCM_matrices.png}
-\end{frame}
-
-\begin{frame}[fragile]{GLRLM Matrices}
+\begin{frame}[fragile]{Whatever appendix}
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/GLRLM_matrices.png}
 \end{frame}
