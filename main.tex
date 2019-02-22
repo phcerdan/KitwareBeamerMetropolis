@@ -40,8 +40,11 @@
 \input{xincludegraphics.tex}
 \hypersetup{
 colorlinks, urlcolor=blue, linkcolor={blue!10!black},
-%citecolor={blue!50!black}
+citecolor={blue!50!black}
 }
+%\usepackage[style=authortitle,backend=bibtex]{biblatex}
+\usepackage[backend=bibtex,bibencoding=utf8,style=verbose-inote,citestyle=authortitle]{biblatex}
+\addbibresource{references.bib}
 %
 % metropolis theme: https://github.com/matze/mtheme
 %
@@ -76,8 +79,8 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
   \end{beamercolorbox}%
 }
 % At the logo on top of the footline.
-\addtobeamertemplate{footline}{\hfill\includegraphics[height=0.45cm]{klogo_new_crop}\hspace*{0.5em}\par}{}
-%\setbeamertemplate{frame footer}{\includegraphics[width=.1\textwidth]{klogo_new_crop}}
+\addtobeamertemplate{footline}{\hfill\includegraphics[height=0.45cm]{Kitware_Logo}\hspace*{0.5em}\par\vspace{0.1mm}}{}
+%\setbeamertemplate{frame footer}{\includegraphics[width=.1\textwidth]{Kitware_Logo}}
 
 
 \title{Kitware Beamer Template}
@@ -89,7 +92,7 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 \titlegraphic{
 \begin{tikzpicture}[overlay, remember picture]
 \node[at=(current page.south), anchor=south] {%
-\includegraphics[width=.3\textwidth]{klogo}\hspace{2cm} \includegraphics[width=.3\textwidth]{unclogo}
+\includegraphics[width=.3\textwidth]{Kitware_Logo}\hspace{2cm} \includegraphics[width=.3\textwidth]{unclogo}
 };
 \end{tikzpicture}
 }
@@ -109,7 +112,7 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 \begin{frame}
   \begin{columns}[onlytextwidth]
   \column{0.5\textwidth}
-    \includegraphics[width=0.9\textwidth]{./logos/klogo.png}\\
+    \includegraphics[width=0.9\textwidth]{./logos/Kitware_Logo.png}\\
     \vspace{0.1cm}
     % \metroset{block=fill}
     \begin{block}{\color{kitwareblue} Collaborative Software R\&D}
@@ -131,13 +134,19 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
   \note[item]{Intro Kitware:}
 \end{frame}
 
+{
+\setbeamercolor{background canvas}{bg=kitwarewhite}
+\begin{frame}{Medical Computing}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./logos/kitware_medical_HQ.png}
+\end{frame}
+}
+
 \begin{frame}[fragile]{Introduction}
-\begin{itemize} \itemsep1em
+\begin{itemize}[<+->] \itemsep1em
 \item Just a list
-
-\item B
-
-\item C
+\item Showing
+\item New items per slide
 \end{itemize}
 \end{frame}
 
@@ -175,12 +184,10 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
     \centering
     \column{0.5\textwidth}
     \centering
-    \xincludegraphics[width=0.9\textwidth, label=a, labelbox]{./TextureMapsImages/GLRLM_49_LEFT_0_crop.png}\\
-    \xincludegraphics[width=0.9\textwidth, label=c, labelbox]{./TextureMapsImages/GLRLM_49_LEFT_2_crop.png}
+    \xincludegraphics[width=0.9\textwidth, label=a, labelbox]{./TextureMapsImages/GLRLM_46_LEFT_0_crop.png}\\
     \column{0.5\textwidth}
     \centering
-    \xincludegraphics[width=0.9\textwidth, label=b, labelbox]{./TextureMapsImages/GLRLM_49_LEFT_1_crop.png}\\
-    \xincludegraphics[width=0.9\textwidth, label=d, labelbox]{./TextureMapsImages/GLRLM_49_LEFT_3_crop.png}
+    \xincludegraphics[width=0.9\textwidth, label=b, labelbox]{./TextureMapsImages/GLRLM_46_LEFT_1_crop.png}\\
     \end{columns}
   \end{columns}
 \end{frame}
@@ -205,9 +212,10 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
     \column{0.80\textwidth}
     \metroset{block=fill}
     \begin{block}{All analysis filters were implemented as part of \textbf{ITK}, the Insight Toolkit:}
-    \begin{itemize} \itemsep1.0em
+    \begin{itemize} \itemsep0.7em
       \item High performance, greatly reducing computational time in texture analysis.
       \item Able to compute 3D maps of multidimensional features
+      \item[] \includegraphics[width=4mm]{./logos/logo_github.png}\hspace{0.2cm} \href{https://github.com/InsightSoftwareConsortium/ITK}{InsightSoftwareConsortium/ITK}
     \end{itemize}
   \end{block}
     \column{0.20\textwidth}
@@ -221,7 +229,7 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
     \begin{block}{\textbf{Python} packages available for Windows, Mac and Linux}
     % \noindent \textbf{Python} packages available for Windows, Mac and Linux
       \centering
-      pip install itk-texturefeatures itk-bonemorphometry
+      pip install \href{https://github.com/InsightSoftwareConsortium/ITKTextureFeatures}{itk-texturefeatures} \href{https://github.com/InsightSoftwareConsortium/ITKBoneMorphometry}{itk-bonemorphometry}
   \end{block}
     \column{0.20\textwidth}
     \centering
@@ -231,21 +239,15 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
   \begin{columns}[onlytextwidth]
     \column{0.80\textwidth}
     \metroset{block=fill}
-    \begin{block}{Graphical interface in 3DSlicer: Bone Texture Extension}
+    \begin{block}{Graphical interface in 3DSlicer: \href{https://github.com/Kitware/BoneTextureExtension}{Bone Texture Extension}}
     \end{block}
     \column{0.20\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth]{./logos/logo_slicer_horizontal.png}
+    \includegraphics[width=0.65\textwidth]{./logos/logo_slicer_horizontal.png}\hspace{0.1mm}
+    \includegraphics[width=0.3\textwidth]{./logos/logo_BoneTexture.png}
   \end{columns}
 \end{frame}
 
-{
-\setbeamercolor{background canvas}{bg=kitwarewhite}
-\begin{frame}{Medical Computing}
-    \centering
-    \includegraphics[height=0.9\textheight]{./logos/kitware_medical.png}
-\end{frame}
-}
 
 \begin{frame}[standout]
   \centering
@@ -269,8 +271,9 @@ colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 
 \begin{frame}[allowframebreaks]{References}
 
-  \bibliography{references}
-  \bibliographystyle{abbrv}
+  %\bibliography{references}
+  %\bibliographystyle{abbrv}
+  \printbibliography
 
 \end{frame}
 
