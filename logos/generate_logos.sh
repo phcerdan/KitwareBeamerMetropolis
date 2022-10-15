@@ -6,5 +6,5 @@
 set -e
 
 for f in *.svg; do
-  inkscape $f --export-eps=${f%%.*}.eps
+  inkscape $f --export-pdf=${f%%.*}.pdf --export-area-page
 done

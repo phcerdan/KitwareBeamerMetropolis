@@ -61,7 +61,7 @@ citecolor={blue!50!black}
 \titlegraphic{
 \begin{tikzpicture}[overlay, remember picture]
 \node[at=(current page.south), anchor=south] {%
-\includegraphics[width=.2\textwidth]{Kitware_Logo}
+\includegraphics[width=.3\textwidth]{Kitware_Logo}
 \hspace{2cm}\includegraphics[width=.3\textwidth]{unclogo}
 };
 \end{tikzpicture}
@@ -205,7 +205,7 @@ OASIS-1, 416 subjects aged 18 to 96, T1-weighted MRI scans
 
 \only<1>{\fullcite{oasis1}}
 \only<2>{
-Fine for demo, though not a natural use case:
+Fine for demo, though not a natural DeepAtlas use case:
 \begin{itemize}
 \item tissue type segmentation from brain MRI is typically not manual
 \item limitation of segmentation data is artificially imposed for the sake of demo
@@ -214,15 +214,148 @@ Fine for demo, though not a natural use case:
 \end{frame}
 
 
-\begin{frame}{MONAI Networks}
+\begin{frame}[fragile]{MONAI Networks}
+\begin{minted}{python}
+seg_net = monai.networks.nets.UNet(
+	3,  # spatial dims
+	1,  # input channels
+	num_segmentation_classes,  # output channels
+	(8, 16, 16, 32, 32, 64, 64),  # channel sequence
+	(1, 2, 1, 2, 1, 2),  # convolutional strides
+	dropout=0.2,
+	norm='batch'
+)
+\end{minted}
+\end{frame}
 
+\begin{frame}[fragile]{MONAI Networks}
+\begin{minted}{python}
+reg_net = monai.networks.nets.UNet(
+	3,  # spatial dims
+	2,  # input channels (one for fixed image and one for moving image)
+	3,  # output channels (to represent 3D displacement vector field)
+	(16, 32, 32, 32, 32),  # channel sequence
+	(1, 2, 2, 2),  # convolutional strides
+	dropout=0.2,
+	norm="batch"
+)
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{MONAI Warp}
+	\begin{minted}{python}
+warp = monai.networks.blocks.Warp(mode="bilinear", padding_mode="border")
+
+ddf = reg_net(img_pair)
+warped_moving_image = warp(moving_img, ddf)
+	\end{minted}
+\begin{center}
+	(picture of image, DDF, grid preview, and warped image)
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{MONAI Losses}
+\begin{minted}{python}
+lncc_loss = monai.losses.LocalNormalizedCrossCorrelationLoss(
+	spatial_dims=3,
+	kernel_size=3,
+	kernel_type='rectangular',
+	reduction="mean"
+)
+
+bending_loss = monai.losses.BendingEnergyLoss(normalize = True)
+
+loss_similarity = lncc_loss(warped_moving_image, target_image)
+loss_regularization = bending_loss(ddf)
+\end{minted}
+\end{frame}
+
+
+
+\begin{frame}{Notebook}
+Find the notebook at
+\url{https://github.com/Project-MONAI/tutorials/}
+
+\vspace{2em}
+	
+Notebook is only a demo of the DeepAtlas approach.
+
+For practically usable models:
+\begin{itemize}
+	\item add data augmentation (MONAI makes this super easy)
+	\item package the model together with needed pre- and post-processing
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Where to Contribute}
+\begin{itemize}
+	\item Core
+	\begin{itemize}
+		\item \url{https://github.com/Project-MONAI/MONAI}
+		\item useful transforms, network layers, network architectures, etc.
+	\end{itemize}
+	\item Tutorials
+	\begin{itemize}
+		\item \url{https://github.com/Project-MONAI/tutorials}
+		\item show how to do something using MONAI
+	\end{itemize}
+	\item Research
+	\begin{itemize}
+		\item \url{https://github.com/Project-MONAI/research-contributions}
+		\item published, peer-reviewed research
+		\item good initial entry point for research code that has potential for going into core
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
 
 \section{Slicer Integration}
 
+\begin{frame}{LungAIR Clinical Platform}
+\begin{itemize}
+	\item Desktop application to help track progress of premature babies in NICU
+	\item Goal is to incorporate AI models for BPD risk prediction
+	\item Need:
+	\begin{itemize}
+		\item AI models that work with X-Rays and EHR data \only<2,3,4>{$\rightsquigarrow$ \textbf{MONAI}} 
+		\item A desktop app that allows viewing and interacting with the results \only<3,4>{$\rightsquigarrow$ \textbf{3D Slicer}} 
+	\end{itemize}
+\end{itemize}
+\only<4>{
+\begin{center}
+(figure of slicer nad monai marrying)
+\end{center}
+}
+\end{frame}
+
+\begin{frame}{Using a MONAI Model in Slicer}
+\end{frame}
+
+\begin{frame}{Slicer + PyTorch}
+\end{frame}
+
+\begin{frame}{Inference in Slicer}
+\end{frame}
+
+\begin{frame}{Augmentation}
+\end{frame}
+
 
 \section{Community}
+
+\begin{frame}{Community}
+\begin{itemize}
+	\item Discussions: \url{https://github.com/Project-MONAI/MONAI/discussions}
+	\item Contributions
+	\begin{itemize}
+		\item MONAI devs are very welcoming and helpful
+		\item read \url{https://github.com/Project-MONAI/MONAI/blob/dev/CONTRIBUTING.md}\\and get going!
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
 
 \section{End}
 
