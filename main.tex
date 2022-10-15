@@ -1,35 +1,5 @@
-\documentclass[10pt,aspectratio=169]{beamer}
+\documentclass[10pt,aspectratio=169,dvipsnames]{beamer}
 \usepackage{pgfpages}
-
-% ---------------- Support for notes ------------------------------
-% Add an empty note to every slide
-% https://tex.stackexchange.com/questions/11708/run-macro-on-each-frame-in-beamer
-% \setbeameroption{hide notes} % Only slides (default)
-% \setbeameroption{show only notes} % Only notes
-% \setbeameroption{show notes on second screen=right} % Both
-\makeatletter
-\def\beamer@framenotesbegin{% at beginning of slide
-  \gdef\beamer@noteitems{}%
-  \gdef\beamer@notes{{}}% used to be totally empty.
-}
-\makeatother
-% Now, use a pdf reader able to read this:
-% -----------------------------------------------------------------
-% iOS: Skim: https://gist.github.com/andrejbauer/ac361549ac2186be0cdb
-% 1. Generate just the presentation (hide notes) and save to slides.pdf
-% 2. Generate onlt the notes (show only nodes) and save to notes.pdf
-% 3. With Skim open both slides.pdf and notes.pdf
-% 4. Click on slides.pdf to bring it to front.
-% 5. In Skim, under "View -> Presentation Option -> Synhcronized Noted Document"
-%    select notes.pdf.
-% 6. Now as you move around in slides.pdf the notes.pdf file will follow you.
-% 7. Arrange windows so that notes.pdf is in full screen mode on your laptop
-%    and slides.pdf is in presentation mode on the projector.
-% -----------------------------------------------------------------
-% Linux: pdfpc: https://tex.stackexchange.com/questions/84622/is-there-a-specialized-pdf-viewer-for-latex-beamer-presentations-on-linux
-% example: pdfpc main.pdf --notes=right
-% ---------------- End support for notes --------------------------
-
 \graphicspath{{./figures/}{./logos/}}
 \usetheme[progressbar=frametitle, sectionpage=none]{metropolis}
 \usepackage{appendixnumberbeamer}
@@ -37,13 +7,13 @@
 \usepackage{framed}
 \usepackage{color}
 \usepackage{hyperref}
+\usepackage{minted}
 \input{xincludegraphics.tex}
 \hypersetup{
 colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 citecolor={blue!50!black}
 }
-%\usepackage[style=authortitle,backend=bibtex]{biblatex}
-\usepackage[backend=bibtex,bibencoding=utf8,style=verbose-inote,citestyle=authortitle]{biblatex}
+\usepackage[natbib=true,style=authoryear,backend=bibtex,useprefix=true]{biblatex}
 \addbibresource{references.bib}
 %
 % metropolis theme: https://github.com/matze/mtheme
@@ -83,16 +53,16 @@ citecolor={blue!50!black}
 %\setbeamertemplate{frame footer}{\includegraphics[width=.1\textwidth]{Kitware_Logo}}
 
 
-\title{Kitware Beamer Template}
-\subtitle{With an optional subtitle}
-\date{\today}
-\author{Pablo Hernandez-Cerdan\textsuperscript{a}, Other People\textsuperscript{b} and Last Author\textsuperscript{c}}
-\institute{\textsuperscript{a} Kitware, Inc.\newline\textsuperscript{b} Dept. of Statistics and Operations Research, UNC\newline\textsuperscript{c} Dept. of Biomedical Engineering, UNC}
+\title{Using MONAI at Kitware}
+\subtitle{DeepAtlas and other adventures with MONAI}
+\date{October 15, 2022}
+\author{Ebrahim Ebrahim}
 
 \titlegraphic{
 \begin{tikzpicture}[overlay, remember picture]
 \node[at=(current page.south), anchor=south] {%
-\includegraphics[width=.3\textwidth]{Kitware_Logo}\hspace{2cm} \includegraphics[width=.3\textwidth]{unclogo}
+\includegraphics[width=.2\textwidth]{Kitware_Logo}
+\hspace{2cm}\includegraphics[width=.3\textwidth]{unclogo}
 };
 \end{tikzpicture}
 }
@@ -107,175 +77,171 @@ citecolor={blue!50!black}
 %   \tableofcontents[hideallsubsections]
 % \end{frame}
 
-\section{Introduction}
 
-\begin{frame}
-  \begin{columns}[onlytextwidth]
-  \column{0.5\textwidth}
-    \includegraphics[width=0.9\textwidth]{./logos/Kitware_Logo.eps}\\
-    \vspace{0.1cm}
-    % \metroset{block=fill}
-    \begin{block}{\color{kitwareblue} Collaborative Software R\&D}
-      \begin{itemize}%\itemsep0.2em
-        \item Algorithms \& applications
-        \item Software process \& infrastructure
-        \item Support \& training
-        \item Open source leadership
-      \end{itemize}
-    \end{block}
-    \begin{block}{\color{kitwareblue} Supporting industry, government and academia}
-    \end{block}
-  \column{0.5\textwidth}
-    \centering
-    \includegraphics[width=0.9\textwidth]{./logos/kitware_pie.png}\\
-    \includegraphics[width=0.9\textwidth]{./logos/kitware_itk_slicer_vtk_logos.eps}
-  \end{columns}
 
-  \note[item]{Intro Kitware:}
-\end{frame}
 
-{
-\setbeamercolor{background canvas}{bg=kitwarewhite}
-\begin{frame}{Medical Computing}
-    \centering
-    \includegraphics[width=0.9\textwidth]{./logos/kitware_medical_HQ.png}
-\end{frame}
-}
 
-\begin{frame}[fragile]{Introduction}
-\begin{itemize}[<+->] \itemsep1em
-\item Just a list
-\item Showing
-\item New items per slide
+%\begin{frame}{Introduction}
+%\begin{itemize}[<+->] \itemsep1em
+%\item bleh
+%\item bleh
+%\end{itemize}
+%\end{frame}
+
+
+\begin{frame}{Outline}
+\begin{itemize}\itemsep1em
+\item DeepAtlas
+\item Slicer/MONAI integration (the really simple way)
+\item Community
 \end{itemize}
 \end{frame}
 
-\section{Materials}
 
-\begin{frame}[fragile]{Materials}
-\begin{columns}[onlytextwidth]
-  \column{0.25\textwidth}
-    \centering
-    \includegraphics[width=0.99\textwidth]{figures/bone_materials_femur_highlight.png}\\
-    \vspace{0.5cm}
-    \includegraphics[width=0.99\textwidth]{figures/bone_materials_femur_3D.png}
-  \column{0.75\textwidth}
-    \centering
-    \begin{itemize} \itemsep1em
-        \item Two Columns.
+\section{Deep Atlas}
 
-        \item Internally uses minipage.
-    \end{itemize}
-\end{columns}
+\begin{frame}{DeepAtlas}
+\fullcite{deepatlas}\\
+\vspace{2em}
+from the UNC Biomedical Image Analysis Group\\
+\vspace{2em}
+Simultaneously addressing \emph{registration} and \emph{segmentation} in the context of limited labels.
+
+\pause
+(Our use case: A neuroimaging analysis pipeline in which reg. and seg. are imporatant steps)
 \end{frame}
 
-\begin{frame}{Label images with xincludegraphics}
-  \begin{columns}[onlytextwidth]
-    \column{0.6\textwidth}
-    Ten run-length based-features:
-    \begin{itemize}
-       \item \textbf{a}) Short run emphasis (SRE) 
-       \item \textbf{b}) Long run emphasis (LRE) 
-       \item \textbf{c}) Grey level non-uniformity (GLN) 
-       \item \textbf{d}) Run length non-uniformity (RLN) 
-    \end{itemize}
-    \column{0.4\textwidth}
-    \begin{columns}
-    \centering
-    \column{0.5\textwidth}
-    \centering
-    \xincludegraphics[width=0.9\textwidth, label=a, labelbox]{./TextureMapsImages/GLRLM_46_LEFT_0_crop.png}\\
-    \column{0.5\textwidth}
-    \centering
-    \xincludegraphics[width=0.9\textwidth, label=b, labelbox]{./TextureMapsImages/GLRLM_46_LEFT_1_crop.png}\\
-    \end{columns}
-  \end{columns}
+\begin{frame}{Limited Labels}
+Common situation in the medical world:
+\begin{center}
+\emph{Lots of data, but limited labels}
+\end{center}
+\pause
+Manual annotation is
+\begin{itemize}
+\item expensive (requires clinician time)
+\item laborious (images are often 3D)
+\end{itemize}
 \end{frame}
 
-{
-\setbeamercolor{background canvas}{bg=kitwarewhite}
-\section{Results}
-\begin{frame}{Results}
-  \centering
-  \includegraphics[width=0.7\textwidth]{./figures/features_pcaBoneVSpcaTexture1000Bins.png}\\
-  \vspace{0.1cm}
-  First principal component of the bone morphometry analysis versus first principal component of the texture analysis.
+\newcommand{\rcolor}[1]{{\color{blue}#1}}
+\newcommand{\scolor}[1]{{\color{BrickRed}#1}}
+
+\begin{frame}{Registration and Segmentation Support Each Other}
+
+{\large Observation: \emph{\rcolor{registration} and \scolor{segmentation} support each other}.}
+
+$$
+\text{\rcolor{reg} oracle} \quad + \quad \text{a labeled atlas}\quad =\quad \text{\scolor{seg} oracle}
+$$
+\begin{center}
+(figure)
+\end{center}
 \end{frame}
+
+\begin{frame}{Registration and Segmentation Support Each Other}
+
+{\large Observation: \emph{\rcolor{registration} and \scolor{segmentation} support each other}.}
+
+$$
+\text{\scolor{seg} oracle} \quad + \quad \text{``anatomy loss''}\quad \rightarrow\quad \text{improved \rcolor{reg}}
+$$
+\begin{center}
+(figure)
+\end{center}
+\end{frame}
+
+
+\begin{frame}{Registration and Segmentation Support Each Other}
+
+{\large Observation: \emph{\rcolor{registration} and \scolor{segmentation} support each other}.}
+
+$$
+\begin{array}{llll}
+\text{\rcolor{reg} oracle} \quad &+ \quad \text{a labeled atlas}\quad &=\quad &\text{\scolor{seg} oracle}\\
+\text{\scolor{seg} oracle} \quad &+ \quad \text{``anatomy loss''}\quad &\rightarrow\quad &\text{improved \rcolor{reg}}
+\end{array}
+$$
+
+{\large Let's train registration and segmentation models \emph{jointly}:}
+
+\vspace{1em}
+
+Registration model loss:
+$
+\mathcal{L}_\text{sim}(I_m\circ \Phi, I_t)
++ \lambda_\text{reg} \mathcal{L}_\text{reg}(\Phi)
++ \lambda_\text{ana} \mathcal{L}_\text{ana}(S_m\circ \Phi, S_t)
+$
+
+Segmentation  model loss:
+$
+\lambda_\text{ana} {L}_\text{ana}
++ \lambda_\text{sp} \mathcal{L}_\text{sp}
+$
+\end{frame}
+
+
+\begin{frame}{Overview Figure}
+\includegraphics[scale=0.65]{figures/deepatlas-paper-fig.png}
+\end{frame}
+
+\begin{frame}{Registration Loss Flowchart}
+\includegraphics[scale=0.75]{figures/reg_loss_flowchart.png}
+\end{frame}
+
+\begin{frame}{Segmentation Loss Flowchart}
+\includegraphics[scale=0.75]{figures/seg_loss_flowchart.png}
+\end{frame}
+
+\begin{frame}{Data Used in Tutorial Notebook}
+OASIS-1, 416 subjects aged 18 to 96, T1-weighted MRI scans
+
+\begin{center}
+(example image)
+\end{center}
+
+\vfill
+
+\only<1>{\fullcite{oasis1}}
+\only<2>{
+Fine for demo, though not a natural use case:
+\begin{itemize}
+\item tissue type segmentation from brain MRI is typically not manual
+\item limitation of segmentation data is artificially imposed for the sake of demo
+\end{itemize}
 }
-
-\section{Conclusion}
-
-{
-\setbeamercolor{background canvas}{bg=kitwarewhite}
-\begin{frame}{Open Source Development}
-  \begin{columns}[onlytextwidth]
-    \column{0.80\textwidth}
-    \metroset{block=fill}
-    \begin{block}{All analysis filters were implemented as part of \textbf{ITK}, the Insight Toolkit:}
-    \begin{itemize} \itemsep0.7em
-      \item High performance, greatly reducing computational time in texture analysis.
-      \item Able to compute 3D maps of multidimensional features
-      \item[] \includegraphics[width=4mm]{./logos/logo_github.png}\hspace{0.2cm} \href{https://github.com/InsightSoftwareConsortium/ITK}{InsightSoftwareConsortium/ITK}
-    \end{itemize}
-  \end{block}
-    \column{0.20\textwidth}
-    \centering
-    \includegraphics[width=0.8\textwidth]{./logos/logo_ITK.png}
-  \end{columns}
-  \vspace{0.2cm}
-  \begin{columns}[onlytextwidth]
-    \column{0.80\textwidth}
-    \metroset{block=fill}
-    \begin{block}{\textbf{Python} packages available for Windows, Mac and Linux}
-    % \noindent \textbf{Python} packages available for Windows, Mac and Linux
-      \centering
-      pip install \href{https://github.com/InsightSoftwareConsortium/ITKTextureFeatures}{itk-texturefeatures} \href{https://github.com/InsightSoftwareConsortium/ITKBoneMorphometry}{itk-bonemorphometry}
-  \end{block}
-    \column{0.20\textwidth}
-    \centering
-    \includegraphics[width=0.99\textwidth]{./logos/logo_python.png}
-  \end{columns}
-  \vspace{0.2cm}
-  \begin{columns}[onlytextwidth]
-    \column{0.80\textwidth}
-    \metroset{block=fill}
-    \begin{block}{Graphical interface in 3DSlicer: \href{https://github.com/Kitware/BoneTextureExtension}{Bone Texture Extension}}
-    \end{block}
-    \column{0.20\textwidth}
-    \centering
-    \includegraphics[width=0.65\textwidth]{./logos/logo_slicer_horizontal.eps}\hspace{0.1mm}
-    \includegraphics[width=0.3\textwidth]{./logos/logo_BoneTexture.png}
-  \end{columns}
 \end{frame}
+
+
+\begin{frame}{MONAI Networks}
+
+\end{frame}
+
+
+\section{Slicer Integration}
+
+
+\section{Community}
+
+\section{End}
+
 
 
 \begin{frame}[standout]
-  \centering
-  {\huge Thanks!}\\
-  pablo.hernandez@kitware.com\\
-  kitware@kitware.com
-  \vspace{1cm}
-  % {\Huge Questions?}\\
+\centering
+{\huge Thanks!}\\
+ebrahim.ebrahim@kitware.com\\
+kitware@kitware.com\\
+\vspace{1cm}
+%{\Huge Questions?}\\
 \end{frame}
-
-\appendix
-
-{
-\setbeamercolor{background canvas}{bg=kitwarewhite}
-\begin{frame}[fragile]{Whatever appendix}
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/GLRLM_matrices.png}
-\end{frame}
-}
 
 
 \begin{frame}[allowframebreaks]{References}
-
-  %\bibliography{references}
-  %\bibliographystyle{abbrv}
-  \printbibliography
-
+\printbibliography
 \end{frame}
+
 
 
 \end{document}
