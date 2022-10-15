@@ -8,6 +8,7 @@
 \usepackage{color}
 \usepackage{hyperref}
 \usepackage{minted}
+\usepackage{txfonts}
 \input{xincludegraphics.tex}
 \hypersetup{
 colorlinks, urlcolor=blue, linkcolor={blue!10!black},
@@ -135,7 +136,7 @@ $$
 \text{\rcolor{reg} oracle} \quad + \quad \text{a labeled atlas}\quad =\quad \text{\scolor{seg} oracle}
 $$
 \begin{center}
-(figure)
+\includegraphics[scale=0.5]{atlas.png}
 \end{center}
 \end{frame}
 
@@ -147,7 +148,7 @@ $$
 \text{\scolor{seg} oracle} \quad + \quad \text{``anatomy loss''}\quad \rightarrow\quad \text{improved \rcolor{reg}}
 $$
 \begin{center}
-(figure)
+\includegraphics[scale=0.5]{anatomy_loss.png}
 \end{center}
 \end{frame}
 
@@ -195,10 +196,10 @@ $
 \end{frame}
 
 \begin{frame}{Data Used in Tutorial Notebook}
-OASIS-1, 416 subjects aged 18 to 96, T1-weighted MRI scans
+OASIS-1, 416 subjects aged 18 to 96, T1-weighted MRI scans, tissue class segmentations
 
 \begin{center}
-(example image)
+\includegraphics[scale=0.5]{oasis.png}
 \end{center}
 
 \vfill
@@ -249,8 +250,9 @@ warp = monai.networks.blocks.Warp(mode="bilinear", padding_mode="border")
 ddf = reg_net(img_pair)
 warped_moving_image = warp(moving_img, ddf)
 	\end{minted}
+\pause
 \begin{center}
-	(picture of image, DDF, grid preview, and warped image)
+	\includegraphics[scale=0.4]{ddf.png}
 \end{center}
 \end{frame}
 
@@ -323,35 +325,73 @@ For practically usable models:
 		\item A desktop app that allows viewing and interacting with the results \only<3,4>{$\rightsquigarrow$ \textbf{3D Slicer}} 
 	\end{itemize}
 \end{itemize}
+\only<1,2,3>{\vspace{11em}}
 \only<4>{
 \begin{center}
-(figure of slicer nad monai marrying)
+\includegraphics[scale=0.25]{logos/logo_monai}
+\quad
+\raisebox{4em}{\huge\ensuremath\varheartsuit}
+\quad
+\includegraphics[scale=0.5]{logos/logo_slicer}
 \end{center}
 }
 \end{frame}
 
-\begin{frame}{Using a MONAI Model in Slicer}
+\begin{frame}{Using MONAI in Slicer}
+Just pip install it
+\begin{center}
+	\includegraphics[scale=1]{figures/slicer_pip_install}
+\end{center}
 \end{frame}
 
 \begin{frame}{Slicer + PyTorch}
+But first install torch properly
+\begin{center}
+	\includegraphics[scale=0.4]{figures/slicer-pytorch1}
+	\hspace{3em}
+	\includegraphics[scale=0.4]{figures/slicer-pytorch2}
+\end{center}
 \end{frame}
 
 \begin{frame}{Inference in Slicer}
+\begin{center}
+	\includegraphics[scale=0.4]{figures/lungair}
+\end{center}
 \end{frame}
 
-\begin{frame}{Augmentation}
+\begin{frame}[fragile]{Inference in Slicer}
+\begin{minted}{python}
+# Save model with some extra info
+torch.save(
+	{
+		'model': seg_net.cpu(),
+		'transform' : transform,
+		'image_size': image_size,
+	}, save_path)
+
+# ... later in Slicer application
+torch.load(...)
+\end{minted}
+Need the metadata to handle pre- and post-processing in Slicer.\\
+MONAI Bundle was probably the way to go here...
 \end{frame}
+
+
 
 
 \section{Community}
 
 \begin{frame}{Community}
 \begin{itemize}
-	\item Discussions: \url{https://github.com/Project-MONAI/MONAI/discussions}
+	\item Discussions
+	\begin{itemize}
+		\item \url{https://github.com/Project-MONAI/MONAI/discussions}
+		\item everyone is super nice
+	\end{itemize}
 	\item Contributions
 	\begin{itemize}
-		\item MONAI devs are very welcoming and helpful
 		\item read \url{https://github.com/Project-MONAI/MONAI/blob/dev/CONTRIBUTING.md}\\and get going!
+		\item devs are very welcoming and helpful
 	\end{itemize}
 \end{itemize}
 \end{frame}
