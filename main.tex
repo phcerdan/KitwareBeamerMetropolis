@@ -54,10 +54,10 @@ citecolor={blue!50!black}
 %\setbeamertemplate{frame footer}{\includegraphics[width=.1\textwidth]{Kitware_Logo}}
 
 
-\title{Using MONAI at Kitware}
-\subtitle{DeepAtlas and other adventures with MONAI}
-\date{October 15, 2022}
-\author{Ebrahim Ebrahim}
+\title{Put a Title Here}
+\subtitle{Put a subtitle here}
+\date{June 15, 2023}
+\author{Author Name Here}
 
 \titlegraphic{
 \begin{tikzpicture}[overlay, remember picture]
@@ -73,341 +73,107 @@ citecolor={blue!50!black}
 
 \maketitle
 
-% \begin{frame}{Table of contents}
-%   \setbeamertemplate{section in toc}[sections numbered]
-%   \tableofcontents[hideallsubsections]
-% \end{frame}
+
+\begin{frame}{Table of contents}
+\setbeamertemplate{section in toc}[sections numbered]
+\tableofcontents[hideallsubsections]
+\end{frame}
 
 
 
 
-
-%\begin{frame}{Introduction}
-%\begin{itemize}[<+->] \itemsep1em
-%\item bleh
-%\item bleh
-%\end{itemize}
-%\end{frame}
-
-
-\begin{frame}{Outline}
+\begin{frame}{This is a Slide Title}
 \begin{itemize}\itemsep1em
-\item DeepAtlas
-\item Slicer/MONAI integration (the really simple way)
-\item Community
+\item list
+\item of
+\item things
 \end{itemize}
 \end{frame}
 
 
-\section{Deep Atlas}
+\section{This is a section title}
 
-\begin{frame}{DeepAtlas}
-\fullcite{deepatlas}\\
-\vspace{2em}
-from the UNC Biomedical Image Analysis Group\\
-\vspace{2em}
-Simultaneously addressing \emph{registration} and \emph{segmentation} in the context of limited labels.
-
-\pause
-(Our use case: A neuroimaging analysis pipeline in which reg. and seg. are imporatant steps)
-\end{frame}
-
-\begin{frame}{Limited Labels}
-Common situation in the medical world:
-\begin{center}
-\emph{Lots of data, but limited labels}
-\end{center}
-\pause
-Manual annotation is
-\begin{itemize}
-\item expensive (requires clinician time)
-\item laborious (images are often 3D)
-\end{itemize}
-\end{frame}
-
-\newcommand{\rcolor}[1]{{\color{blue}#1}}
-\newcommand{\scolor}[1]{{\color{BrickRed}#1}}
-
-\begin{frame}{Registration and Segmentation Support Each Other}
-
-{\large Observation: \emph{\rcolor{registration} and \scolor{segmentation} support each other}.}
-
-$$
-\text{\rcolor{reg} oracle} \quad + \quad \text{a labeled atlas}\quad =\quad \text{\scolor{seg} oracle}
-$$
-\begin{center}
-\includegraphics[scale=0.5]{atlas.png}
-\end{center}
-\end{frame}
-
-\begin{frame}{Registration and Segmentation Support Each Other}
-
-{\large Observation: \emph{\rcolor{registration} and \scolor{segmentation} support each other}.}
-
-$$
-\text{\scolor{seg} oracle} \quad + \quad \text{``anatomy loss''}\quad \rightarrow\quad \text{improved \rcolor{reg}}
-$$
-\begin{center}
-\includegraphics[scale=0.5]{anatomy_loss.png}
-\end{center}
-\end{frame}
-
-
-\begin{frame}{Registration and Segmentation Support Each Other}
-
-{\large Observation: \emph{\rcolor{registration} and \scolor{segmentation} support each other}.}
-
-$$
-\begin{array}{llll}
-\text{\rcolor{reg} oracle} \quad &+ \quad \text{a labeled atlas}\quad &=\quad &\text{\scolor{seg} oracle}\\
-\text{\scolor{seg} oracle} \quad &+ \quad \text{``anatomy loss''}\quad &\rightarrow\quad &\text{improved \rcolor{reg}}
-\end{array}
-$$
-
-{\large Let's train registration and segmentation models \emph{jointly}:}
-
-\vspace{1em}
-
-Registration model loss:
-$
-\mathcal{L}_\text{sim}(I_m\circ \Phi, I_t)
-+ \lambda_\text{reg} \mathcal{L}_\text{reg}(\Phi)
-+ \lambda_\text{ana} \mathcal{L}_\text{ana}(S_m\circ \Phi, S_t)
-$
-
-Segmentation  model loss:
-$
-\lambda_\text{ana} {L}_\text{ana}
-+ \lambda_\text{sp} \mathcal{L}_\text{sp}
-$
-\end{frame}
-
-
-\begin{frame}{Overview Figure}
-\includegraphics[scale=0.65]{figures/deepatlas-paper-fig.png}
-\end{frame}
-
-\begin{frame}{Registration Loss Flowchart}
-\includegraphics[scale=0.75]{figures/reg_loss_flowchart.png}
-\end{frame}
-
-\begin{frame}{Segmentation Loss Flowchart}
-\includegraphics[scale=0.75]{figures/seg_loss_flowchart.png}
-\end{frame}
-
-\begin{frame}{Data Used in Tutorial Notebook}
-OASIS-1, 416 subjects aged 18 to 96, T1-weighted MRI scans, tissue class segmentations
-
-\begin{center}
-\includegraphics[scale=0.5]{oasis.png}
-\end{center}
-
-\vfill
-
-\only<1>{\fullcite{oasis1}}
-\only<2>{
-Fine for demo, though not a natural DeepAtlas use case:
-\begin{itemize}
-\item tissue type segmentation from brain MRI is typically not manual
-\item limitation of segmentation data is artificially imposed for the sake of demo
-\end{itemize}
-}
-\end{frame}
-
-
-\begin{frame}[fragile]{MONAI Networks}
-\begin{minted}{python}
-seg_net = monai.networks.nets.UNet(
-	3,  # spatial dims
-	1,  # input channels
-	num_segmentation_classes,  # output channels
-	(8, 16, 16, 32, 32, 64, 64),  # channel sequence
-	(1, 2, 1, 2, 1, 2),  # convolutional strides
-	dropout=0.2,
-	norm='batch'
-)
-\end{minted}
-\end{frame}
-
-\begin{frame}[fragile]{MONAI Networks}
-\begin{minted}{python}
-reg_net = monai.networks.nets.UNet(
-	3,  # spatial dims
-	2,  # input channels (one for fixed image and one for moving image)
-	3,  # output channels (to represent 3D displacement vector field)
-	(16, 32, 32, 32, 32),  # channel sequence
-	(1, 2, 2, 2),  # convolutional strides
-	dropout=0.2,
-	norm="batch"
-)
-\end{minted}
-\end{frame}
-
-\begin{frame}[fragile]{MONAI Warp}
-	\begin{minted}{python}
-warp = monai.networks.blocks.Warp(mode="bilinear", padding_mode="border")
-
-ddf = reg_net(img_pair)
-warped_moving_image = warp(moving_img, ddf)
-	\end{minted}
-\pause
-\begin{center}
-	\includegraphics[scale=0.4]{ddf.png}
-\end{center}
-\end{frame}
-
-
-\begin{frame}[fragile]{MONAI Losses}
-\begin{minted}{python}
-lncc_loss = monai.losses.LocalNormalizedCrossCorrelationLoss(
-	spatial_dims=3,
-	kernel_size=3,
-	kernel_type='rectangular',
-	reduction="mean"
-)
-
-bending_loss = monai.losses.BendingEnergyLoss(normalize = True)
-
-loss_similarity = lncc_loss(warped_moving_image, target_image)
-loss_regularization = bending_loss(ddf)
-\end{minted}
-\end{frame}
-
-
-
-\begin{frame}{Notebook}
-Find the notebook at
-\url{https://github.com/Project-MONAI/tutorials/}
+\begin{frame}{Showing citations}
+Here's how you could include a full citation from your bibliography on a slide:
 
 \vspace{2em}
+
+\fullcite{deepatlas}
+
+\vspace{2em}
+
+And if you want a short citation that will be spelled out only
+at the references slide at the end, do this: \cite{oasis1}
+\end{frame}
+
+\begin{frame}[fragile]{Using pauses}
+This text shows up first
+\pause
+
+Then after a pause this text shows up
+\pause
+
+Finally this text shows up
+
+(If you want to compile a version of the slides that does not have the pauses, add the handout option
+to the \verb|\documentclass{beamer}| command.)
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Showing code}
 	
-Notebook is only a demo of the DeepAtlas approach.
+For code, minted works great.
 
-For practically usable models:
-\begin{itemize}
-	\item add data augmentation (MONAI makes this super easy)
-	\item package the model together with needed pre- and post-processing
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}{Where to Contribute}
-\begin{itemize}
-	\item Core
-	\begin{itemize}
-		\item \url{https://github.com/Project-MONAI/MONAI}
-		\item useful transforms, network layers, network architectures, etc.
-	\end{itemize}
-	\item Tutorials
-	\begin{itemize}
-		\item \url{https://github.com/Project-MONAI/tutorials}
-		\item show how to do something using MONAI
-	\end{itemize}
-	\item Research
-	\begin{itemize}
-		\item \url{https://github.com/Project-MONAI/research-contributions}
-		\item published, peer-reviewed research
-		\item good initial entry point for research code that has potential for going into core
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\section{Slicer Integration}
-
-\begin{frame}{LungAIR Clinical Platform}
-\begin{itemize}
-	\item Desktop application to help track progress of premature babies in NICU
-	\item Goal is to incorporate AI models for BPD risk prediction
-	\item Need:
-	\begin{itemize}
-		\item AI models that work with X-Rays and EHR data \only<2,3,4>{$\rightsquigarrow$ \textbf{MONAI}} 
-		\item A desktop app that allows viewing and interacting with the results \only<3,4>{$\rightsquigarrow$ \textbf{3D Slicer}} 
-	\end{itemize}
-\end{itemize}
-\only<1,2,3>{\vspace{11em}}
-\only<4>{
-\begin{center}
-\includegraphics[scale=0.25]{logos/logo_monai}
-\quad
-\raisebox{4em}{\huge\ensuremath\varheartsuit}
-\quad
-\includegraphics[scale=0.5]{logos/logo_slicer}
-\end{center}
-}
-\end{frame}
-
-\begin{frame}{Using MONAI in Slicer}
-Just pip install it
-\begin{center}
-	\includegraphics[scale=1]{figures/slicer_pip_install}
-\end{center}
-\end{frame}
-
-\begin{frame}{Slicer + PyTorch}
-But first install torch properly
-\begin{center}
-	\includegraphics[scale=0.4]{figures/slicer-pytorch1}
-	\hspace{3em}
-	\includegraphics[scale=0.4]{figures/slicer-pytorch2}
-\end{center}
-\end{frame}
-
-\begin{frame}{Inference in Slicer}
-\begin{center}
-	\includegraphics[scale=0.4]{figures/lungair}
-\end{center}
-\end{frame}
-
-\begin{frame}[fragile]{Inference in Slicer}
+Note that to use it with beamer you have to make the slide \verb|fragile|.
+	
 \begin{minted}{python}
-# Save model with some extra info
-torch.save(
-	{
-		'model': seg_net.cpu(),
-		'transform' : transform,
-		'image_size': image_size,
-	}, save_path)
-
-# ... later in Slicer application
-torch.load(...)
+def say_hello():
+	print('hello')
+say_hello()
 \end{minted}
-Need the metadata to handle pre- and post-processing in Slicer.\\
-MONAI Bundle was probably the way to go here...
 \end{frame}
 
 
 
+\begin{frame}{A URL}
+Here is a URL:
 
-\section{Community}
-
-\begin{frame}{Community}
-\begin{itemize}
-	\item Discussions
-	\begin{itemize}
-		\item \url{https://github.com/Project-MONAI/MONAI/discussions}
-		\item everyone is super nice
-	\end{itemize}
-	\item Contributions
-	\begin{itemize}
-		\item read \url{https://github.com/Project-MONAI/MONAI/blob/dev/CONTRIBUTING.md}\\and get going!
-		\item devs are very welcoming and helpful
-	\end{itemize}
-\end{itemize}
+\url{https://github.com/phcerdan/KitwareBeamerMetropolis}
 \end{frame}
 
 
-\section{End}
+
+\section{Another section title}
+
+\begin{frame}{Showing items on specific slides}
+
+\only<1>{This text shows up only on slide 1}
+
+\only<2,3>{This text shows up on slides 2 and 3}
+
+\only<1,2,3>{This text shows up on slides 1, 2, and 3}
+
+\only<2,4>{This text shows up on slides 2 and 4}
+\end{frame}
+
+\begin{frame}{Showing a figure}
+Here is a figure
+\begin{center}
+	\includegraphics[scale=1]{figures/example-figure}
+\end{center}
+\end{frame}
+
 
 
 
 \begin{frame}[standout]
 \centering
 {\huge Thanks!}\\
-ebrahim.ebrahim@kitware.com\\
-kitware@kitware.com\\
+(could put some of your contact info here)\\
 \vspace{1cm}
-%{\Huge Questions?}\\
+{\Huge Questions?}\\
 \end{frame}
 
 
