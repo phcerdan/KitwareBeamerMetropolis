@@ -1,35 +1,5 @@
-\documentclass[10pt,aspectratio=169]{beamer}
+\documentclass[10pt,aspectratio=169,dvipsnames]{beamer}
 \usepackage{pgfpages}
-
-% ---------------- Support for notes ------------------------------
-% Add an empty note to every slide
-% https://tex.stackexchange.com/questions/11708/run-macro-on-each-frame-in-beamer
-% \setbeameroption{hide notes} % Only slides (default)
-% \setbeameroption{show only notes} % Only notes
-% \setbeameroption{show notes on second screen=right} % Both
-\makeatletter
-\def\beamer@framenotesbegin{% at beginning of slide
-  \gdef\beamer@noteitems{}%
-  \gdef\beamer@notes{{}}% used to be totally empty.
-}
-\makeatother
-% Now, use a pdf reader able to read this:
-% -----------------------------------------------------------------
-% iOS: Skim: https://gist.github.com/andrejbauer/ac361549ac2186be0cdb
-% 1. Generate just the presentation (hide notes) and save to slides.pdf
-% 2. Generate onlt the notes (show only nodes) and save to notes.pdf
-% 3. With Skim open both slides.pdf and notes.pdf
-% 4. Click on slides.pdf to bring it to front.
-% 5. In Skim, under "View -> Presentation Option -> Synhcronized Noted Document"
-%    select notes.pdf.
-% 6. Now as you move around in slides.pdf the notes.pdf file will follow you.
-% 7. Arrange windows so that notes.pdf is in full screen mode on your laptop
-%    and slides.pdf is in presentation mode on the projector.
-% -----------------------------------------------------------------
-% Linux: pdfpc: https://tex.stackexchange.com/questions/84622/is-there-a-specialized-pdf-viewer-for-latex-beamer-presentations-on-linux
-% example: pdfpc main.pdf --notes=right
-% ---------------- End support for notes --------------------------
-
 \graphicspath{{./figures/}{./logos/}}
 \usetheme[progressbar=frametitle, sectionpage=none]{metropolis}
 \usepackage{appendixnumberbeamer}
@@ -37,13 +7,14 @@
 \usepackage{framed}
 \usepackage{color}
 \usepackage{hyperref}
+\usepackage{minted}
+\usepackage{txfonts}
 \input{xincludegraphics.tex}
 \hypersetup{
 colorlinks, urlcolor=blue, linkcolor={blue!10!black},
 citecolor={blue!50!black}
 }
-%\usepackage[style=authortitle,backend=bibtex]{biblatex}
-\usepackage[backend=bibtex,bibencoding=utf8,style=verbose-inote,citestyle=authortitle]{biblatex}
+\usepackage[natbib=true,style=authoryear,backend=bibtex,useprefix=true]{biblatex}
 \addbibresource{references.bib}
 %
 % metropolis theme: https://github.com/matze/mtheme
@@ -83,16 +54,16 @@ citecolor={blue!50!black}
 %\setbeamertemplate{frame footer}{\includegraphics[width=.1\textwidth]{Kitware_Logo}}
 
 
-\title{Kitware Beamer Template}
-\subtitle{With an optional subtitle}
-\date{\today}
-\author{Pablo Hernandez-Cerdan\textsuperscript{a}, Other People\textsuperscript{b} and Last Author\textsuperscript{c}}
-\institute{\textsuperscript{a} Kitware, Inc.\newline\textsuperscript{b} Dept. of Statistics and Operations Research, UNC\newline\textsuperscript{c} Dept. of Biomedical Engineering, UNC}
+\title{Put a Title Here}
+\subtitle{Put a subtitle here}
+\date{June 15, 2023}
+\author{Author Name Here}
 
 \titlegraphic{
 \begin{tikzpicture}[overlay, remember picture]
 \node[at=(current page.south), anchor=south] {%
-\includegraphics[width=.3\textwidth]{Kitware_Logo}\hspace{2cm} \includegraphics[width=.3\textwidth]{unclogo}
+\includegraphics[width=.3\textwidth]{Kitware_Logo}
+\hspace{2cm}\includegraphics[width=.3\textwidth]{unclogo}
 };
 \end{tikzpicture}
 }
@@ -102,180 +73,114 @@ citecolor={blue!50!black}
 
 \maketitle
 
-% \begin{frame}{Table of contents}
-%   \setbeamertemplate{section in toc}[sections numbered]
-%   \tableofcontents[hideallsubsections]
-% \end{frame}
 
-\section{Introduction}
-
-\begin{frame}
-  \begin{columns}[onlytextwidth]
-  \column{0.5\textwidth}
-    \includegraphics[width=0.9\textwidth]{./logos/Kitware_Logo.eps}\\
-    \vspace{0.1cm}
-    % \metroset{block=fill}
-    \begin{block}{\color{kitwareblue} Collaborative Software R\&D}
-      \begin{itemize}%\itemsep0.2em
-        \item Algorithms \& applications
-        \item Software process \& infrastructure
-        \item Support \& training
-        \item Open source leadership
-      \end{itemize}
-    \end{block}
-    \begin{block}{\color{kitwareblue} Supporting industry, government and academia}
-    \end{block}
-  \column{0.5\textwidth}
-    \centering
-    \includegraphics[width=0.9\textwidth]{./logos/kitware_pie.png}\\
-    \includegraphics[width=0.9\textwidth]{./logos/kitware_itk_slicer_vtk_logos.eps}
-  \end{columns}
-
-  \note[item]{Intro Kitware:}
+\begin{frame}{Table of contents}
+\setbeamertemplate{section in toc}[sections numbered]
+\tableofcontents[hideallsubsections]
 \end{frame}
 
-{
-\setbeamercolor{background canvas}{bg=kitwarewhite}
-\begin{frame}{Medical Computing}
-    \centering
-    \includegraphics[width=0.9\textwidth]{./logos/kitware_medical_HQ.png}
-\end{frame}
-}
 
-\begin{frame}[fragile]{Introduction}
-\begin{itemize}[<+->] \itemsep1em
-\item Just a list
-\item Showing
-\item New items per slide
+
+
+\begin{frame}{This is a Slide Title}
+\begin{itemize}\itemsep1em
+\item list
+\item of
+\item things
 \end{itemize}
 \end{frame}
 
-\section{Materials}
 
-\begin{frame}[fragile]{Materials}
-\begin{columns}[onlytextwidth]
-  \column{0.25\textwidth}
-    \centering
-    \includegraphics[width=0.99\textwidth]{figures/bone_materials_femur_highlight.png}\\
-    \vspace{0.5cm}
-    \includegraphics[width=0.99\textwidth]{figures/bone_materials_femur_3D.png}
-  \column{0.75\textwidth}
-    \centering
-    \begin{itemize} \itemsep1em
-        \item Two Columns.
+\section{This is a section title}
 
-        \item Internally uses minipage.
-    \end{itemize}
-\end{columns}
+\begin{frame}{Showing citations}
+Here's how you could include a full citation from your bibliography on a slide:
+
+\vspace{2em}
+
+\fullcite{deepatlas}
+
+\vspace{2em}
+
+And if you want a short citation that will be spelled out only
+at the references slide at the end, do this: \cite{oasis1}
 \end{frame}
 
-\begin{frame}{Label images with xincludegraphics}
-  \begin{columns}[onlytextwidth]
-    \column{0.6\textwidth}
-    Ten run-length based-features:
-    \begin{itemize}
-       \item \textbf{a}) Short run emphasis (SRE) 
-       \item \textbf{b}) Long run emphasis (LRE) 
-       \item \textbf{c}) Grey level non-uniformity (GLN) 
-       \item \textbf{d}) Run length non-uniformity (RLN) 
-    \end{itemize}
-    \column{0.4\textwidth}
-    \begin{columns}
-    \centering
-    \column{0.5\textwidth}
-    \centering
-    \xincludegraphics[width=0.9\textwidth, label=a, labelbox]{./TextureMapsImages/GLRLM_46_LEFT_0_crop.png}\\
-    \column{0.5\textwidth}
-    \centering
-    \xincludegraphics[width=0.9\textwidth, label=b, labelbox]{./TextureMapsImages/GLRLM_46_LEFT_1_crop.png}\\
-    \end{columns}
-  \end{columns}
+\begin{frame}[fragile]{Using pauses}
+This text shows up first
+\pause
+
+Then after a pause this text shows up
+\pause
+
+Finally this text shows up
+
+(If you want to compile a version of the slides that does not have the pauses, add the handout option
+to the \verb|\documentclass{beamer}| command.)
+
 \end{frame}
 
-{
-\setbeamercolor{background canvas}{bg=kitwarewhite}
-\section{Results}
-\begin{frame}{Results}
-  \centering
-  \includegraphics[width=0.7\textwidth]{./figures/features_pcaBoneVSpcaTexture1000Bins.png}\\
-  \vspace{0.1cm}
-  First principal component of the bone morphometry analysis versus first principal component of the texture analysis.
-\end{frame}
-}
 
-\section{Conclusion}
 
-{
-\setbeamercolor{background canvas}{bg=kitwarewhite}
-\begin{frame}{Open Source Development}
-  \begin{columns}[onlytextwidth]
-    \column{0.80\textwidth}
-    \metroset{block=fill}
-    \begin{block}{All analysis filters were implemented as part of \textbf{ITK}, the Insight Toolkit:}
-    \begin{itemize} \itemsep0.7em
-      \item High performance, greatly reducing computational time in texture analysis.
-      \item Able to compute 3D maps of multidimensional features
-      \item[] \includegraphics[width=4mm]{./logos/logo_github.png}\hspace{0.2cm} \href{https://github.com/InsightSoftwareConsortium/ITK}{InsightSoftwareConsortium/ITK}
-    \end{itemize}
-  \end{block}
-    \column{0.20\textwidth}
-    \centering
-    \includegraphics[width=0.8\textwidth]{./logos/logo_ITK.png}
-  \end{columns}
-  \vspace{0.2cm}
-  \begin{columns}[onlytextwidth]
-    \column{0.80\textwidth}
-    \metroset{block=fill}
-    \begin{block}{\textbf{Python} packages available for Windows, Mac and Linux}
-    % \noindent \textbf{Python} packages available for Windows, Mac and Linux
-      \centering
-      pip install \href{https://github.com/InsightSoftwareConsortium/ITKTextureFeatures}{itk-texturefeatures} \href{https://github.com/InsightSoftwareConsortium/ITKBoneMorphometry}{itk-bonemorphometry}
-  \end{block}
-    \column{0.20\textwidth}
-    \centering
-    \includegraphics[width=0.99\textwidth]{./logos/logo_python.png}
-  \end{columns}
-  \vspace{0.2cm}
-  \begin{columns}[onlytextwidth]
-    \column{0.80\textwidth}
-    \metroset{block=fill}
-    \begin{block}{Graphical interface in 3DSlicer: \href{https://github.com/Kitware/BoneTextureExtension}{Bone Texture Extension}}
-    \end{block}
-    \column{0.20\textwidth}
-    \centering
-    \includegraphics[width=0.65\textwidth]{./logos/logo_slicer_horizontal.eps}\hspace{0.1mm}
-    \includegraphics[width=0.3\textwidth]{./logos/logo_BoneTexture.png}
-  \end{columns}
+\begin{frame}[fragile]{Showing code}
+	
+For code, minted works great.
+
+Note that to use it with beamer you have to make the slide \verb|fragile|.
+	
+\begin{minted}{python}
+def say_hello():
+	print('hello')
+say_hello()
+\end{minted}
 \end{frame}
+
+
+
+\begin{frame}{A URL}
+Here is a URL:
+
+\url{https://github.com/phcerdan/KitwareBeamerMetropolis}
+\end{frame}
+
+
+
+\section{Another section title}
+
+\begin{frame}{Showing items on specific slides}
+
+\only<1>{This text shows up only on slide 1}
+
+\only<2,3>{This text shows up on slides 2 and 3}
+
+\only<1,2,3>{This text shows up on slides 1, 2, and 3}
+
+\only<2,4>{This text shows up on slides 2 and 4}
+\end{frame}
+
+\begin{frame}{Showing a figure}
+Here is a figure
+\begin{center}
+	\includegraphics[scale=1]{figures/example-figure}
+\end{center}
+\end{frame}
+
+
 
 
 \begin{frame}[standout]
-  \centering
-  {\huge Thanks!}\\
-  pablo.hernandez@kitware.com\\
-  kitware@kitware.com
-  \vspace{1cm}
-  % {\Huge Questions?}\\
+\centering
+{\huge Thanks!}\\
+(could put some of your contact info here)\\
+\vspace{1cm}
+{\Huge Questions?}\\
 \end{frame}
-
-\appendix
-
-{
-\setbeamercolor{background canvas}{bg=kitwarewhite}
-\begin{frame}[fragile]{Whatever appendix}
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/GLRLM_matrices.png}
-\end{frame}
-}
 
 
 \begin{frame}[allowframebreaks]{References}
-
-  %\bibliography{references}
-  %\bibliographystyle{abbrv}
-  \printbibliography
-
+\printbibliography
 \end{frame}
+
 
 
 \end{document}

@@ -12,12 +12,12 @@
    version="1.1"
    x="0px"
    y="0px"
-   viewBox="0 0 1421 365"
+   viewBox="0 0 1421 400"
    xml:space="preserve"
    id="svg1072"
    sodipodi:docname="Kitware_Logo.svg"
    width="1421"
-   height="365"
+   height="400"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"><metadata
    id="metadata1078"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
@@ -40,8 +40,8 @@
    inkscape:snap-bbox-edge-midpoints="true"
    inkscape:object-nodes="false"
    inkscape:zoom="0.4375"
-   inkscape:cx="786.38685"
-   inkscape:cy="-43.043433"
+   inkscape:cx="362.38685"
+   inkscape:cy="-47.614862"
    inkscape:window-x="0"
    inkscape:window-y="27"
    inkscape:window-maximized="1"
@@ -63,7 +63,7 @@
    id="Template"
    class="st0"
    style="display:none"
-   transform="translate(0,120.8)">
+   transform="translate(0,155.8)">
 	<g
    class="st1"
    id="g853"
@@ -169,212 +169,212 @@
 	</g>
 	<polygon
    class="st3"
-   points="1382.5,-5.6 1419.5,-47.1 1382.5,-88.5 1308.5,-88.5 1271.6,-47.1 1308.5,-5.6 "
+   points="1382.5,-88.5 1308.5,-88.5 1271.6,-47.1 1308.5,-5.6 1382.5,-5.6 1419.5,-47.1 "
    id="polygon855"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1505.7,-54.5 1542.6,-95.9 1505.7,-137.3 1431.7,-137.3 1394.7,-95.9 1431.7,-54.5 "
+   points="1505.7,-137.3 1431.7,-137.3 1394.7,-95.9 1431.7,-54.5 1505.7,-54.5 1542.6,-95.9 "
    id="polygon857"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1505.7,43.2 1542.6,1.8 1505.7,-39.7 1431.7,-39.7 1394.7,1.8 1431.7,43.2 "
+   points="1505.7,-39.7 1431.7,-39.7 1394.7,1.8 1431.7,43.2 1505.7,43.2 1542.6,1.8 "
    id="polygon859"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1629.2,-6 1666.1,-47.4 1629.2,-88.8 1555.2,-88.8 1518.2,-47.4 1555.2,-6 "
+   points="1629.2,-88.8 1555.2,-88.8 1518.2,-47.4 1555.2,-6 1629.2,-6 1666.1,-47.4 "
    id="polygon861"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1628.8,91.3 1665.8,49.9 1628.8,8.5 1554.8,8.5 1517.8,49.9 1554.8,91.3 "
+   points="1628.8,8.5 1554.8,8.5 1517.8,49.9 1554.8,91.3 1628.8,91.3 1665.8,49.9 "
    id="polygon863"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1752.3,43.2 1789.3,1.8 1752.3,-39.7 1678.4,-39.7 1641.4,1.8 1678.4,43.2 "
+   points="1752.3,-39.7 1678.4,-39.7 1641.4,1.8 1678.4,43.2 1752.3,43.2 1789.3,1.8 "
    id="polygon865"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1751.9,140 1788.9,98.6 1751.9,57.1 1678,57.1 1641,98.6 1678,140 "
+   points="1751.9,57.1 1678,57.1 1641,98.6 1678,140 1751.9,140 1788.9,98.6 "
    id="polygon867"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1876.2,92.1 1913.2,50.7 1876.2,9.2 1802.2,9.2 1765.3,50.7 1802.2,92.1 "
+   points="1876.2,9.2 1802.2,9.2 1765.3,50.7 1802.2,92.1 1876.2,92.1 1913.2,50.7 "
    id="polygon869"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1507.3,-151.8 1544.2,-193.2 1507.3,-234.6 1433.3,-234.6 1396.3,-193.2 1433.3,-151.8 "
+   points="1507.3,-234.6 1433.3,-234.6 1396.3,-193.2 1433.3,-151.8 1507.3,-151.8 1544.2,-193.2 "
    id="polygon871"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1630.4,-200.6 1667.4,-242 1630.4,-283.5 1556.4,-283.5 1519.5,-242 1556.4,-200.6 "
+   points="1630.4,-283.5 1556.4,-283.5 1519.5,-242 1556.4,-200.6 1630.4,-200.6 1667.4,-242 "
    id="polygon873"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1630.4,-103.3 1667.4,-144.7 1630.4,-186.2 1556.4,-186.2 1519.5,-144.7 1556.4,-103.3 "
+   points="1630.4,-186.2 1556.4,-186.2 1519.5,-144.7 1556.4,-103.3 1630.4,-103.3 1667.4,-144.7 "
    id="polygon875"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1753.9,-151.8 1790.9,-193.2 1753.9,-234.6 1679.9,-234.6 1643,-193.2 1679.9,-151.8 "
+   points="1753.9,-234.6 1679.9,-234.6 1643,-193.2 1679.9,-151.8 1753.9,-151.8 1790.9,-193.2 "
    id="polygon877"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1753.5,-54.1 1790.5,-95.5 1753.5,-136.9 1679.6,-136.9 1642.6,-95.5 1679.6,-54.1 "
+   points="1753.5,-136.9 1679.6,-136.9 1642.6,-95.5 1679.6,-54.1 1753.5,-54.1 1790.5,-95.5 "
    id="polygon879"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1877.1,-102.9 1914.1,-144.4 1877.1,-185.8 1803.1,-185.8 1766.1,-144.4 1803.1,-102.9 "
+   points="1877.1,-185.8 1803.1,-185.8 1766.1,-144.4 1803.1,-102.9 1877.1,-102.9 1914.1,-144.4 "
    id="polygon881"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1876.7,-6.1 1913.7,-47.6 1876.7,-89 1802.7,-89 1765.7,-47.6 1802.7,-6.1 "
+   points="1876.7,-89 1802.7,-89 1765.7,-47.6 1802.7,-6.1 1876.7,-6.1 1913.7,-47.6 "
    id="polygon883"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="2001,-54.1 2038,-95.5 2001,-136.9 1927,-136.9 1890,-95.5 1927,-54.1 "
+   points="2001,-136.9 1927,-136.9 1890,-95.5 1927,-54.1 2001,-54.1 2038,-95.5 "
    id="polygon885"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1382.5,382.9 1419.5,341.4 1382.5,300 1308.5,300 1271.6,341.4 1308.5,382.9 "
+   points="1382.5,300 1308.5,300 1271.6,341.4 1308.5,382.9 1382.5,382.9 1419.5,341.4 "
    id="polygon887"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1505.7,334 1542.6,292.6 1505.7,251.2 1431.7,251.2 1394.7,292.6 1431.7,334 "
+   points="1505.7,251.2 1431.7,251.2 1394.7,292.6 1431.7,334 1505.7,334 1542.6,292.6 "
    id="polygon889"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1505.7,431.7 1542.6,390.3 1505.7,348.8 1431.7,348.8 1394.7,390.3 1431.7,431.7 "
+   points="1505.7,348.8 1431.7,348.8 1394.7,390.3 1431.7,431.7 1505.7,431.7 1542.6,390.3 "
    id="polygon891"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1629.2,383.3 1666.1,341.9 1629.2,300.4 1555.2,300.4 1518.2,341.9 1555.2,383.3 "
+   points="1629.2,300.4 1555.2,300.4 1518.2,341.9 1555.2,383.3 1629.2,383.3 1666.1,341.9 "
    id="polygon893"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1628.8,480.6 1665.8,439.2 1628.8,397.7 1554.8,397.7 1517.8,439.2 1554.8,480.6 "
+   points="1628.8,397.7 1554.8,397.7 1517.8,439.2 1554.8,480.6 1628.8,480.6 1665.8,439.2 "
    id="polygon895"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1752.3,431.7 1789.3,390.3 1752.3,348.8 1678.4,348.8 1641.4,390.3 1678.4,431.7 "
+   points="1752.3,348.8 1678.4,348.8 1641.4,390.3 1678.4,431.7 1752.3,431.7 1789.3,390.3 "
    id="polygon897"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1751.9,528.5 1788.9,487.1 1751.9,445.7 1678,445.7 1641,487.1 1678,528.5 "
+   points="1751.9,445.7 1678,445.7 1641,487.1 1678,528.5 1751.9,528.5 1788.9,487.1 "
    id="polygon899"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1876.2,480.6 1913.2,439.2 1876.2,397.7 1802.2,397.7 1765.3,439.2 1802.2,480.6 "
+   points="1876.2,397.7 1802.2,397.7 1765.3,439.2 1802.2,480.6 1876.2,480.6 1913.2,439.2 "
    id="polygon901"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1507.3,236.7 1544.2,195.3 1507.3,153.9 1433.3,153.9 1396.3,195.3 1433.3,236.7 "
+   points="1507.3,153.9 1433.3,153.9 1396.3,195.3 1433.3,236.7 1507.3,236.7 1544.2,195.3 "
    id="polygon903"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1630.4,188.7 1667.4,147.2 1630.4,105.8 1556.4,105.8 1519.5,147.2 1556.4,188.7 "
+   points="1630.4,105.8 1556.4,105.8 1519.5,147.2 1556.4,188.7 1630.4,188.7 1667.4,147.2 "
    id="polygon905"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1630.4,286 1667.4,244.5 1630.4,203.1 1556.4,203.1 1519.5,244.5 1556.4,286 "
+   points="1630.4,203.1 1556.4,203.1 1519.5,244.5 1556.4,286 1630.4,286 1667.4,244.5 "
    id="polygon907"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1753.9,236.7 1790.9,195.3 1753.9,153.9 1679.9,153.9 1643,195.3 1679.9,236.7 "
+   points="1753.9,153.9 1679.9,153.9 1643,195.3 1679.9,236.7 1753.9,236.7 1790.9,195.3 "
    id="polygon909"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1753.5,334.5 1790.5,293 1753.5,251.6 1679.6,251.6 1642.6,293 1679.6,334.5 "
+   points="1753.5,251.6 1679.6,251.6 1642.6,293 1679.6,334.5 1753.5,334.5 1790.5,293 "
    id="polygon911"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1876.5,188.3 1913.5,146.8 1876.5,105.4 1802.6,105.4 1765.6,146.8 1802.6,188.3 "
+   points="1876.5,105.4 1802.6,105.4 1765.6,146.8 1802.6,188.3 1876.5,188.3 1913.5,146.8 "
    id="polygon913"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1999.7,139.4 2036.7,98 1999.7,56.6 1925.7,56.6 1888.7,98 1925.7,139.4 "
+   points="1999.7,56.6 1925.7,56.6 1888.7,98 1925.7,139.4 1999.7,139.4 2036.7,98 "
    id="polygon915"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1999.7,43.9 2036.7,2.5 1999.7,-39 1925.7,-39 1888.7,2.5 1925.7,43.9 "
+   points="1999.7,-39 1925.7,-39 1888.7,2.5 1925.7,43.9 1999.7,43.9 2036.7,2.5 "
    id="polygon917"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1999.7,237.1 2036.7,195.7 1999.7,154.2 1925.7,154.2 1888.7,195.7 1925.7,237.1 "
+   points="1999.7,154.2 1925.7,154.2 1888.7,195.7 1925.7,237.1 1999.7,237.1 2036.7,195.7 "
    id="polygon919"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="2123.2,188.3 2160.2,146.8 2123.2,105.4 2049.2,105.4 2012.2,146.8 2049.2,188.3 "
+   points="2123.2,105.4 2049.2,105.4 2012.2,146.8 2049.2,188.3 2123.2,188.3 2160.2,146.8 "
    id="polygon921"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="2122.8,286 2159.8,244.6 2122.8,203.1 2048.9,203.1 2011.9,244.6 2048.9,286 "
+   points="2122.8,203.1 2048.9,203.1 2011.9,244.6 2048.9,286 2122.8,286 2159.8,244.6 "
    id="polygon923"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="2246.4,237.1 2283.3,195.7 2246.4,154.2 2172.4,154.2 2135.4,195.7 2172.4,237.1 "
+   points="2246.4,154.2 2172.4,154.2 2135.4,195.7 2172.4,237.1 2246.4,237.1 2283.3,195.7 "
    id="polygon925"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="2246,333.9 2282.9,292.5 2246,251 2172,251 2135,292.5 2172,333.9 "
+   points="2246,251 2172,251 2135,292.5 2172,333.9 2246,333.9 2282.9,292.5 "
    id="polygon927"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="2124.4,91 2161.4,49.5 2124.4,8.1 2050.5,8.1 2013.5,49.5 2050.5,91 "
+   points="2124.4,8.1 2050.5,8.1 2013.5,49.5 2050.5,91 2124.4,91 2161.4,49.5 "
    id="polygon929"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="2247.6,139.8 2284.6,98.4 2247.6,57 2173.6,57 2136.6,98.4 2173.6,139.8 "
+   points="2247.6,57 2173.6,57 2136.6,98.4 2173.6,139.8 2247.6,139.8 2284.6,98.4 "
    id="polygon931"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1877.1,285.6 1914.1,244.1 1877.1,202.7 1803.1,202.7 1766.1,244.1 1803.1,285.6 "
+   points="1877.1,202.7 1803.1,202.7 1766.1,244.1 1803.1,285.6 1877.1,285.6 1914.1,244.1 "
    id="polygon933"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="1876.7,382.4 1913.7,341 1876.7,299.5 1802.7,299.5 1765.7,341 1802.7,382.4 "
+   points="1876.7,299.5 1802.7,299.5 1765.7,341 1802.7,382.4 1876.7,382.4 1913.7,341 "
    id="polygon935"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<polygon
    class="st3"
-   points="2001,334.5 2038,293 2001,251.6 1927,251.6 1890,293 1927,334.5 "
+   points="2001,251.6 1927,251.6 1890,293 1927,334.5 2001,334.5 2038,293 "
    id="polygon937"
    style="display:inline;fill:none;stroke:#dce3ec;stroke-width:7.41599989;stroke-miterlimit:10" />
 	<g
@@ -644,7 +644,7 @@
 </g>
 <g
    id="Layer_3"
-   transform="matrix(2.1631907,0,0,2.1631907,-148.82749,-81.134553)">
+   transform="matrix(2.1631907,0,0,2.1631907,-148.82749,-70.13455)">
 	<g
    id="g1062">
 		<path
@@ -728,7 +728,7 @@
    id="Layer_1"
    class="st0"
    style="display:none"
-   transform="translate(0,120.8)">
+   transform="translate(0,155.8)">
 	<line
    class="st7"
    x1="-456.70001"
